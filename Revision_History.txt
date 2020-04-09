@@ -1,0 +1,20 @@
+04042020v3
+-Added favicon
+-Reposition Tagline under Logo
+
+04052020v1
+-added About
+
+04062020v1
+-added print receipt and save copy to server 
+-improve txn code
+
+04062020v2
+-added receipt for claimed transactions
+-improved send receipt form
+-added sample screenshots
+
+04072020v1
+-added logo on both send or receive receipt
+-added Admin button
+-added User Management for admin
