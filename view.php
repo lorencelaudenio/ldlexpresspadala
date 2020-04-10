@@ -56,10 +56,7 @@ From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" 
 	
 	//while($row = mysqli_fetch_assoc($view_query)) {
    
-    if($ito_dapat){//important into para Search Results
-Web results
-
-mysqli_fetch_assoc() expects parameter 1 to be
+    if($ito_dapat){//important ito to fix -mysqli_fetch_assoc() expects parameter 1 to be
     while($row = mysqli_fetch_assoc($ito_dapat)) {
 		
 		$db_txn_no = $row["txn_no"];
