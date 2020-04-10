@@ -20,16 +20,24 @@ if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
 
 $v_from_date = $_POST['from_date'];
 $v_to_date = $_POST['to_date'];
+$today = date("m-d-Y");
+$count = 0;
 
-if($v_type == "admin"){
-    if(isset($_POST['date'])){
-    $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
-    }
-}elseif($v_type == "emp"){
-    if(isset($_POST['date'])){
-    $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' AND LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
+
+$ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' ORDER BY date_time_sent DESC");
+$count = mysqli_num_rows($ito_dapat);
+
+if(isset($_POST['date'])){
+    if($v_type == "admin"){
+        $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
+        $count = mysqli_num_rows($ito_dapat);
+    }elseif($v_type == "emp"){
+        $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' AND LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
+        $count = mysqli_num_rows($ito_dapat);
     }
 }
+
+
 
 
 //view
@@ -37,8 +45,7 @@ if($v_type == "admin"){
 
  echo '<b><div class="intitle"><center>View</center></div></b><div class="form">
 <form method="POST" action="view.php">
-From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" name="from_date" value="<?php echo $v_from_date;?>">&nbsp;To: <input data-date="" data-date-format="DD MMMM YYYY" type="date" id="date" name="to_date" value="<?php echo $v_to_date;?>">&nbsp;
-
+From: <input type="date" id="date"   name="from_date" value="<?php echo $today;?>">&nbsp;To: <input  type="date" id="date" name="to_date" value="<?php echo $today;?>">&nbsp;
 <input type="submit" value="Filter" name="date">
 </form>
 ';
@@ -56,7 +63,7 @@ From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" 
 	
 	//while($row = mysqli_fetch_assoc($view_query)) {
    
-    if($ito_dapat){//important ito to fix -mysqli_fetch_assoc() expects parameter 1 to be
+    if($ito_dapat){//important ito to fix mysqli_fetch_assoc() expects parameter 1 to be
     while($row = mysqli_fetch_assoc($ito_dapat)) {
 		
 		$db_txn_no = $row["txn_no"];
@@ -80,10 +87,15 @@ From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" 
     }
     }
 	
-	echo "</table></div> ";   
+	echo "</table><br>
+Total: $count record(s).
+</div> ";   
+
 
 
 ?>
+
+
 <title>View</title>
 
 <?php include ('footer.php');?>
