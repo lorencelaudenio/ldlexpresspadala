@@ -1,4 +1,5 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
 
@@ -27,7 +28,7 @@ $receiver=$_POST['receiver'];
 $receiver_cp_no=$_POST['receiver_cp_no'];
 $relship=$_POST['relship'];
 $purp=$_POST['purp'];
-$date_time_sent=date("m/d/y h:i:s");
+$date_time_sent=date("Y-m-d h:i:s");
 $date_time_claimed="";
 $processed_by=$logged_info;
 $released_by=$_POST['released_by'];

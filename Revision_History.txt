@@ -21,3 +21,6 @@
 
 04102020v1
 -added view transactions (emp can view only his transactions white admin can view all users)
+
+04102020v2
+-added filter by date range in view transactions
