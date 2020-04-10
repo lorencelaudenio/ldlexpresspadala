@@ -1,6 +1,6 @@
 <?php
 
-require("http://tss.s-re.jp/fpdf/fpdf.php");
+require("fpdf182_2/fpdf.php");
 session_start();
 $d_txn_no = $_SESSION['s_txn_no'];
 $d_date_time = $_SESSION['s_date_time'];
