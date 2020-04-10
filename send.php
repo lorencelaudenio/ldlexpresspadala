@@ -87,11 +87,11 @@ function getdestcode(){
 </tr>
  
 <tr>
-    <td>Destination Branch:</td><td><input type="text"  onkeyup="getdestcode()" class="logintext" name="dest" id="dest" value="<?php echo $dest; ?>" required><input type="hidden" id="destcode" name="destcode"></td>
+    <td>Destination Branch:</td><td><input type="text"  onchange="getdestcode()" class="logintext" name="dest" id="dest" value="<?php echo $dest; ?>" required><input type="hidden" id="destcode" name="destcode"></td>
 </tr>
  
 <tr>
-    <td>Amount:</td><td><input type="text" onkeyup="getfee()"  class="logintext" id="amt" name="amt" value="<?php echo $amt; ?>" required></td><td>Fee:</td><td><input type="text" name="fee"  class="number" id="fee"></td><td>Total:</td><td> <input type="text"  class="number" name="total" id="total"></td>
+    <td>Amount:</td><td><input type="text" onchange="getfee()"  class="logintext" id="amt" name="amt" value="<?php echo $amt; ?>" required></td><td>Fee:</td><td><input type="text" name="fee"  class="number" id="fee"></td><td>Total:</td><td> <input type="text"  class="number" name="total" id="total"></td>
 </tr>
      
 <tr>
