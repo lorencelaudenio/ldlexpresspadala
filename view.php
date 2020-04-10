@@ -20,6 +20,7 @@ if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
 
 $v_from_date = $_POST['from_date'];
 $v_to_date = $_POST['to_date'];
+
 if($v_type == "admin"){
     if(isset($_POST['date'])){
     $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
@@ -54,6 +55,11 @@ From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" 
 		</tr>";
 	
 	//while($row = mysqli_fetch_assoc($view_query)) {
+   
+    if($ito_dapat){//important into para Search Results
+Web results
+
+mysqli_fetch_assoc() expects parameter 1 to be
     while($row = mysqli_fetch_assoc($ito_dapat)) {
 		
 		$db_txn_no = $row["txn_no"];
@@ -72,7 +78,10 @@ From: <input type="date" id="date" data-date="" data-date-format="DD MMMM YYYY" 
         <td>$db_processed_by</td>
         <td>$db_status</td>
 		</tr>";
-	}
+	
+        
+    }
+    }
 	
 	echo "</table></div> ";   
 
