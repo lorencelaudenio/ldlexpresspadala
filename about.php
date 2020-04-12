@@ -1,13 +1,12 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
-
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
+include("global_variables.php");
 
 
 //redirect to login if no variable set for empid
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
+if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
 }
 
@@ -16,7 +15,7 @@ if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
 
 
 <!--<link rel="stylesheet" type="text/css" href="style.css">-->
-<title>About</title>
+<title>About<?php echo $g_title; ?></title>
 
 <form method="POST" action="index.php">
 <b><div class="intitle"><center>About</center></div></b>
@@ -24,8 +23,8 @@ if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
 
 
 <div class="about">
-<center><img class="loginlogo" src="img/logo.png"/></center><br>
-<b><center><div class=""><small><font color="#e60000">LDL Padala Express Login</font></small></div></center></b><br>
+<center><img class="loginlogo" src="<?php echo $g_logo;?>"/></center><br>
+<b><center><div class=""><small><font color="#e60000"><?php echo $g_receipttitle;?></font></small></div></center></b><br>
 <p>Actually, there's nothing more in here. LDL Express Padala simulates the sending/receiving of money that is being done by most of the remittance centers here in our country. This system being developed is just a part of my Project NOGAWA ("Walang Magawa") which eventually happened during the pandemic #COVID19 on 1st quarter of 2020 to fight boredom. Since I have nothing to do rather than sleeping and staring on my smartphone the whole day that is for sure will end me up unproductive after. Tried to entertain myself with different streaming, like watching "Raffy Tulfo in Action" haha but after watching specific topic nothing interesting follows but to do coding.</p>
 
 <p>What's in a logo? Obviously, it's a bird flying with the money as it's wings (Char!). The logo signifies the fast transactions through technology innovations. It streamlined the process of sending money On-The-Fly by pushing and pulling the records out from the cloud.</p>

@@ -2,17 +2,9 @@
 error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
-
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
+include("global_variables.php");
 
 
-//redirect to login if no variable set for empid
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
-	header("location: login.php");
-}
-
-//$txn_no = "";
 $txn_no = $_POST['txn_no'];
 
 //search
@@ -48,7 +40,7 @@ if(isset($_POST['search'])){
 
 
 <!--<link rel="stylesheet" type="text/css" href="style.css">-->
-<title>Track</title>
+<title>Track<?php echo $g_title; ?></title>
 
 <form method="POST" action="index.php">
 <b><div class="intitle"><center>Track</center></div></b>

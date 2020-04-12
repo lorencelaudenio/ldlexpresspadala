@@ -1,15 +1,10 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
+include("global_variables.php");
 
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
-$r_username = $_SESSION['s_username'];
 
-//redirect to login if no variable set for empid
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
-	header("location: login.php");
-}
 
 $txn_no = "";
 
@@ -18,8 +13,7 @@ $txn_no=$_POST['txn_no'];
 
 $status = "Claimed";
 $current_status = $_POST['status'];
-$date_time_claimed = date("m/d/y h:i:s");
-$released_by=$logged_info;
+
 
 
 
@@ -61,7 +55,7 @@ if(isset($_POST['receive'])){
         //echo $txn_no ." already claimed! Please track.";
          echo '<center><div class="notification"><b>'.$txn_no.'</b> already claimed! Please track.</div></center>';
     }else{
-        $sql = mysqli_query($conn,"UPDATE tbl_ldlpadalaexpress SET status='$status', date_time_claimed='$date_time_claimed', released_by='$released_by' WHERE txn_no='$txn_no'");
+        $sql = mysqli_query($conn,"UPDATE tbl_ldlpadalaexpress SET status='$status', date_time_claimed='$g_date_time', released_by='$g_logged_info' WHERE txn_no='$txn_no'");
 
        //echo "Money claimed succesfully!";
         echo '<center><div class="notification"><a a href="claimreceipt.php" target="_BLANK" class="printlink"><b>' .$txn_no. '</b></a> claimed successfully!</div></center>';
@@ -72,7 +66,7 @@ if(isset($_POST['receive'])){
 
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Receive</title>
+<title>Receive<?php echo $g_title; ?></title>
 <b><div class="intitle"><center>Receive</center></div></b>
 <div class="form">
 
@@ -135,8 +129,6 @@ if(isset($_POST['receive'])){
 
 session_start();
 $_SESSION['r_txn_no'] = $_POST['txn_no'];
-$r_date_time=date("m/d/y h:i:s");
-$_SESSION['r_date_time']=$r_date_time;
 $_SESSION['r_sender'] = $_POST['sender'];
 $_SESSION['r_sender_cp_no']=$_POST['sender_cp_no'];
 $_SESSION['r_dest']=ucfirst($_POST['dest']);
@@ -144,11 +136,7 @@ $_SESSION['r_amt']=$_POST['amt'];
 $_SESSION['r_receiver'] = $_POST['receiver'];
 $_SESSION['r_receiver_cp_no']=$_POST['receiver_cp_no'];
 $_SESSION['r_relship']=$_POST['relship'];
-$_SESSION['r_purp']=$_POST['purp'];
-$r_date_time_sent = date("m/d/y h:i:s");
-$_SESSION['r_date_time_sent']=$r_date_time_sent;
-
-$_SESSION['r_processor_name'] = $r_username; 
+$_SESSION['r_purp']=$_POST['purp']; 
 
 
 ?>

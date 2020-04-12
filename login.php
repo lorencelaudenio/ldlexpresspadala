@@ -1,5 +1,7 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
+
 
 $username = $password = "";
 
@@ -21,6 +23,9 @@ if(isset($_POST['login'])){
 			$_SESSION['s_password'] = $password;
             $_SESSION['s_branch'] = $check['branch'];
             $_SESSION['s_type'] = $check['type'];
+
+            
+            
             
     
         
@@ -28,7 +33,7 @@ if(isset($_POST['login'])){
         
         
 			
-			header("location: index.php");
+			header("location: index.php");//wag lagyan ng exit
 		}else{
 			echo "<script>alert('Username/password incorrect!')</script>";
 		}
@@ -39,7 +44,7 @@ if(isset($_POST['login'])){
 
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Login</title>
+<title>Login | LDL Express Padala</title>
 
 
 <div class="shadow">

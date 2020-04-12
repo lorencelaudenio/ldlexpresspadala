@@ -8,7 +8,7 @@ $_SESSION = array();
 
 session_destroy();
 
-//NOT header("location: login.php");
-exit(header("Location: /login.php"));
-exit;
+
+exit(header("location: login.php"));
+
 ?>

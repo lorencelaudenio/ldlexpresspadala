@@ -2,16 +2,13 @@
 error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
-
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
-
+include("global_variables.php");
 
 //redirect to login if no variable set for empid and not admin beg
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
+if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
 }else{
-    if($_SESSION['s_type'] != "admin"){
+    if($g_type != "admin"){
        
         header("location: index.php");
     }
@@ -37,15 +34,15 @@ return del;
 </script>
 
 
-<title>Admin Panel</title>
+<title>Admin Panel<?php echo $g_title; ?></title>
 
 
 <b><div class="intitle"><center>Admin Panel</center></div></b>
 <div class="form">
     <form method="POST" action="admin.php">
     <a href="adduser.php">User Management</a><br>
-        
-    <input type="submit" name="deleteall" value="Delete All" onclick="return deleteconfig()">
+    <a href="deletesingletxn.php">Delete Single Transaction</a><br>
+    <input type="submit" name="deleteall" value="Delete All Transactions" onclick="return deleteconfig()">
     </form>
     
 </div>

@@ -1,16 +1,14 @@
 <?php
+error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
-
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
-
+include("global_variables.php");
 
 //redirect to login if no variable set for empid and not admin beg
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
+if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
 }else{
-    if($_SESSION['s_type'] != "admin"){
+    if($g_type != "admin"){
        
         header("location: index.php");
     }
@@ -22,7 +20,7 @@ $password = $_POST['password'];
 $cpassword = $_POST['cpassword'];
 $branch = $_POST['branch'];
 $type = $_POST['type'];
-$date_enrolled = date("m/d/y h:i:s");
+$date_enrolled = $g_date_time;
 
 //add
 if(isset($_POST['add'])){
@@ -92,12 +90,23 @@ if(isset($_POST['update'])){
 
 ?>
 
+<script>
+function deleteconfig(){
+
+var del=confirm("Are you sure you want to delete this user?");
+if (del==true){
+   alert ("User deleted!")
+}else{
+    alert("No user were affected.")
+}
+return del;
+}
+</script>
+
+<title>User Management <?php echo $g_title; ?></title>
 
 
-<title>Admin Panel - User Management</title>
-
-
-<b><div class="intitle"><center>Admin Panel - User Management</center></div></b>
+<b><div class="intitle"><center>User Management</center></div></b>
 <div class="form">
     <table>
     <form method="POST" action="adduser.php">
@@ -120,7 +129,7 @@ if(isset($_POST['update'])){
         <td>Date/Time Enrolled:</td><td><input type="text" name="date_enrolled" class="inputtextsearch"  value="<?php echo $db_date_enrolled; ?>" readonly></td>
     </tr>
     <tr>
-        <td><input type="submit" name="add" class="loginbtn" value="Add">&nbsp;<input type="submit" name="update" class="loginbtn" value="Edit/Update">&nbsp;<input type="submit" name="delete" class="loginbtn" value="Delete"></td>
+        <td><input type="submit" name="add" class="loginbtn" value="Add">&nbsp;<input type="submit" name="update" class="loginbtn" value="Edit/Update">&nbsp;<input type="submit" name="delete" class="loginbtn" value="Delete" onclick="return deleteconfig()"></td>
     </tr>
     
     </form>

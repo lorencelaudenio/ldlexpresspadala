@@ -1,9 +1,8 @@
 <?php
-
+include("global_variables.php");
 require("fpdf182_2/fpdf.php");
-session_start();
 $new_x_txn_no = $_SESSION['r_txn_no'];
-$x_date_time = $_SESSION['r_date_time'];
+//$x_date_time = $_SESSION['r_date_time'];
 $x_sender = $_SESSION['r_sender'];
 $x_sender_cp_no = $_SESSION['r_sender_cp_no'];
 $x_dest = $_SESSION['r_dest'];
@@ -13,7 +12,7 @@ $x_receiver_cp_no = $_SESSION['r_receiver_cp_no'];
 $x_relship = $_SESSION['r_relship'];
 $x_purp = $_SESSION['r_purp'];
 
-$x_processor_name = $_SESSION['r_processor_name'];
+//$x_processor_name = $_SESSION['r_processor_name'];
 
 
 
@@ -23,22 +22,22 @@ $x_processor_name = $_SESSION['r_processor_name'];
     $pdf->SetFont('Arial','',7);
     $pdf->SetX(50);    
     $pdf->Cell(40,5,'',0,1);
-    $pdf->Image('img/logo.png',40,6,20);
+    $pdf->Image($g_logo,40,6,20);
     $pdf->SetX(38);
-    $pdf->Cell(40,0,'LDL Padala Express',0,1);
+    $pdf->Cell(40,0,$g_receipttitle,0,1);
     $pdf->SetX(39);
-    $pdf->Cell(40,5,'Money On-The-Fly!',0,1);
+    $pdf->Cell(40,5,$g_tagline,0,1);
     $pdf->SetX(20);
-    $pdf->Cell(40,0,'Head Office: Lumintao, Malawaan, Rizal, Occ. Mindoro',0,1);
+    $pdf->Cell(40,0,$g_address,0,1);
     $pdf->SetX(24);
-    $pdf->Cell(40,5,'Customer Service: 09488157847/09272053904',0,1);
+    $pdf->Cell(40,5,$g_contactinfo,0,1);
     $pdf->Cell(40,3,'',0,1);
     $pdf->SetX(37);
     $pdf->Cell(40,5,'RECEIVE MONEY FORM',0,1);
     $pdf->Cell(19,10,'Transaction No.:',0);
     $pdf->Cell(30,10,$new_x_txn_no,0);
     $pdf->Cell(13,10,'Date/Time:',0);
-    $pdf->Cell(10,10,$x_date_time,0,1);
+    $pdf->Cell(10,10,$g_date_time,0,1);
     $pdf->Cell(40,5,'Sender:',0);
     $pdf->Cell(40,5,$x_sender,0,1);
     $pdf->Cell(40,0,'Cellphone No.:',0);
@@ -61,7 +60,7 @@ $x_processor_name = $_SESSION['r_processor_name'];
     
     $pdf->Cell(40,10,'',0,1);
     $pdf->Cell(40,0,strtoupper($x_receiver),0);
-    $pdf->Cell(40,0,strtoupper($x_processor_name),0,1); 
+    $pdf->Cell(40,0,strtoupper($g_logged_info),0,1); 
     $pdf->SetX(15);   
     $pdf->Cell(40,5,'Receiver                                     Authorized Personnel',0,1);
 

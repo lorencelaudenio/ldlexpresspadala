@@ -2,53 +2,96 @@
 error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
-
-session_start();
-$logged_info = $_SESSION['s_username'] . " - " . $_SESSION['s_branch'];
-$v_type = $_SESSION['s_type'];
-
-
-
-
-//redirect to login if no variable set for empid
-if(!isset($_SESSION['s_username']) || empty($_SESSION['s_username'])){
-	header("location: login.php");
-}
-
-
-
+include("global_variables.php");
 
 $v_from_date = $_POST['from_date'];
 $v_to_date = $_POST['to_date'];
-$today = date("m-d-Y");
+$status = $_POST['status'];
 $count = 0;
 
 
-$ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' ORDER BY date_time_sent DESC");
+//page load
+    if($g_type != "admin"){
+    $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$g_logged_info' ORDER BY date_time_sent DESC");
 $count = mysqli_num_rows($ito_dapat);
-
-if(isset($_POST['date'])){
-    if($v_type == "admin"){
-        $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
-        $count = mysqli_num_rows($ito_dapat);
-    }elseif($v_type == "emp"){
-        $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' AND LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
-        $count = mysqli_num_rows($ito_dapat);
-    }
+}elseif($g_type == "admin"){
+    $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress ORDER BY date_time_sent DESC");
+$count = mysqli_num_rows($ito_dapat);
 }
 
 
 
 
-//view
-//$view_query = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$logged_info' ORDER BY date_time_sent DESC");
 
- echo '<b><div class="intitle"><center>View</center></div></b><div class="form">
+
+
+
+
+//filterv2
+if(isset($_POST['filter'])){
+    //reset
+    if(empty($v_from_date) && empty($v_to_date) && empty($status)){
+       if($g_type != "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$g_logged_info' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }elseif($g_type == "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }
+    //may laman lahat     
+    }elseif(!empty($v_from_date) && !empty($v_to_date) && !empty($status)){
+        if($g_type == "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' AND status='$status' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }elseif($g_type == "emp"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$g_logged_info' AND LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' AND status='$status' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }
+    //may date pero walang status
+    }elseif(!empty($v_from_date) && !empty($v_to_date)){
+        if($g_type != "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$g_logged_info' AND LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }elseif($g_type == "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE LEFT(date_time_sent,10) >= '$v_from_date' AND LEFT(date_time_sent,10) <= '$v_to_date' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }       
+    //may status pero walang date  
+    }elseif(!empty($status)){
+        if($g_type != "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE processed_by='$g_logged_info' AND status='$status' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        }elseif($g_type == "admin"){
+            $ito_dapat = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE status='$status' ORDER BY date_time_sent DESC");
+            $count = mysqli_num_rows($ito_dapat);
+        } 
+    }
+}
+
+    
+    
+
+
+
+
+ echo '
+<center><div class="notification">Total: '.$count.' record(s).</div></center>
+<b><div class="intitle"><center>View</center></div></b><div class="form">
 <form method="POST" action="view.php">
-From: <input type="date" id="date"   name="from_date" value="<?php echo $today;?>">&nbsp;To: <input  type="date" id="date" name="to_date" value="<?php echo $today;?>">&nbsp;
-<input type="submit" value="Filter" name="date">
+From: <input type="date" id="from_date" class="inputtextsearch"  name="from_date" >&nbsp;To: <input   type="date" class="inputtextsearch" id="to_date" name="to_date" >&nbsp;
+
+
+
+Status:&nbsp;
+<select name="status" id="status" value="" class="inputtextsearch">
+    <option name="status" value=""></option>
+    <option name="status" value="Claimed">Claimed</option>
+    <option name="status" value="Unclaim">Unclaim</option>
+</select>
+&nbsp;
+<input type="submit" class="loginbtn" value="Filter" name="filter" >
 </form>
-';
+'; 
 
 	echo "<table border='1' width='100%'";
 	echo "<tr>
@@ -88,7 +131,7 @@ From: <input type="date" id="date"   name="from_date" value="<?php echo $today;?
     }
 	
 	echo "</table><br>
-Total: $count record(s).
+
 </div> ";   
 
 
@@ -96,6 +139,7 @@ Total: $count record(s).
 ?>
 
 
-<title>View</title>
+
+<title>View <?php echo $g_title; ?></title>
 
 <?php include ('footer.php');?>
