@@ -116,6 +116,24 @@ $_SESSION['s_receiver_cp_no']=$receiver_cp_no;
 $_SESSION['s_relship']=ucfirst($relship);
 $_SESSION['s_purp']=$purp;
 
+
+$c_receipttitle = $g_receipttitle;
+$c_tagline = $g_tagline;
+$c_address = $g_address;
+$c_date_time = $g_date_time;
+$c_logged_info = $g_logged_info;
+$c_contactinfo = $g_contactinfo;
+
+
+
+$_SESSION['s_title'] = $c_receipttitle;
+$_SESSION['s_tagline'] = $c_tagline;
+$_SESSION['s_address'] = $c_address;
+$_SESSION['s_date_time'] = $c_date_time;
+$_SESSION['s_logged_info'] = $c_logged_info;
+$_SESSION['s_contactinfo'] = $c_contactinfo;
+
+
 ?>
 <input type="hidden" class="loginbtn" name="print" value="Print">
 </form>

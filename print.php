@@ -1,7 +1,7 @@
 <?php
-include("global_variables.php");
-require("fpdf182_2/fpdf.php");
 
+require("fpdf182_2/fpdf.php");
+session_start();
 $d_txn_no = $_SESSION['s_txn_no'];
 $d_sender = $_SESSION['s_sender'];
 $d_sender_cp_no = $_SESSION['s_sender_cp_no'];
@@ -11,6 +11,13 @@ $d_receiver = $_SESSION['s_receiver'];
 $d_receiver_cp_no = $_SESSION['s_receiver_cp_no'];
 $d_relship = $_SESSION['s_relship'];
 $d_purp = $_SESSION['s_purp'];
+$d_title = $_SESSION['s_title'];
+$d_tagline = $_SESSION['s_tagline'];
+$d_address = $_SESSION['s_address'];
+$d_date_time = $_SESSION['s_date_time'];
+$d_logged_info = $_SESSION['s_logged_info'];
+$d_contactinfo = $_SESSION['s_contactinfo'];
+
 
 
 
@@ -20,23 +27,23 @@ $d_purp = $_SESSION['s_purp'];
     $pdf->AddPage();
     $pdf->SetFont('Arial','',7);
     $pdf->SetX(50);    
-    $pdf->Image($g_logo,40,6,20);
+    $pdf->Image("img/logo.png",40,6,20);
     $pdf->Cell(40,5,'',0,1);
     $pdf->SetX(38);
-    $pdf->Cell(40,0,$g_receipttitle,0,1);
+    $pdf->Cell(40,0,$d_title,0,1);
     $pdf->SetX(39);
-    $pdf->Cell(40,5,$g_tagline,0,1);
+    $pdf->Cell(40,5,$d_tagline,0,1);
     $pdf->SetX(20);
-    $pdf->Cell(40,0,$g_address,0,1);
+    $pdf->Cell(40,0,$d_address,0,1);
     $pdf->SetX(24);
-    $pdf->Cell(40,5,$g_contactinfo,0,1);
+    $pdf->Cell(40,5,$d_contactinfo,0,1);
     $pdf->Cell(40,3,'',0,1);
     $pdf->SetX(37);
     $pdf->Cell(40,5,'SEND MONEY FORM',0,1);
     $pdf->Cell(19,10,'Transaction No.:',0);
     $pdf->Cell(30,10,$d_txn_no,0);
     $pdf->Cell(13,10,'Date/Time:',0);
-    $pdf->Cell(10,10,$g_date_time,0,1);
+    $pdf->Cell(10,10,$d_date_time,0,1);
     $pdf->Cell(40,5,'Sender:',0);
     $pdf->Cell(40,5,$d_sender,0,1);
     $pdf->Cell(40,0,'Cellphone No.:',0);
@@ -59,7 +66,7 @@ $d_purp = $_SESSION['s_purp'];
     
     $pdf->Cell(40,10,'',0,1);
     $pdf->Cell(40,0,strtoupper($d_sender),0);
-    $pdf->Cell(40,0,strtoupper($g_logged_info),0,1);  
+    $pdf->Cell(40,0,strtoupper($d_logged_info),0,1);  
     $pdf->SetX(15);   
     $pdf->Cell(40,5,'Sender                                     Authorized Personnel',0,1);
 
