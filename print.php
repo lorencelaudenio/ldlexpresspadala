@@ -17,6 +17,7 @@ $d_address = $_SESSION['s_address'];
 $d_date_time = $_SESSION['s_date_time'];
 $d_logged_info = $_SESSION['s_logged_info'];
 $d_contactinfo = $_SESSION['s_contactinfo'];
+$d_logo = $_SESSION['s_logo'];
 
 
 
@@ -27,7 +28,7 @@ $d_contactinfo = $_SESSION['s_contactinfo'];
     $pdf->AddPage();
     $pdf->SetFont('Arial','',7);
     $pdf->SetX(50);    
-    $pdf->Image("img/logo.png",40,6,20);
+    $pdf->Image($d_logo,40,6,20);
     $pdf->Cell(40,5,'',0,1);
     $pdf->SetX(38);
     $pdf->Cell(40,0,$d_title,0,1);

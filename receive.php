@@ -138,6 +138,23 @@ $_SESSION['r_receiver_cp_no']=$_POST['receiver_cp_no'];
 $_SESSION['r_relship']=$_POST['relship'];
 $_SESSION['r_purp']=$_POST['purp']; 
 
+$b_receipttitle = $g_receipttitle;
+$b_tagline = $g_tagline;
+$b_address = $g_address;
+$b_date_time = $g_date_time;
+$b_logged_info = $g_logged_info;
+$b_contactinfo = $g_contactinfo;
+$b_logo = $g_logo;
+
+
+
+$_SESSION['r_title'] = $b_receipttitle;
+$_SESSION['r_tagline'] = $b_tagline;
+$_SESSION['r_address'] = $b_address;
+$_SESSION['r_date_time'] = $b_date_time;
+$_SESSION['r_logged_info'] = $b_logged_info;
+$_SESSION['r_contactinfo'] = $b_contactinfo;
+$_SESSION['r_logo'] = $b_logo;
 
 ?>
 <input type="hidden" class="loginbtn" name="print" value="Print">

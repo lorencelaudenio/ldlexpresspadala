@@ -123,7 +123,7 @@ $c_address = $g_address;
 $c_date_time = $g_date_time;
 $c_logged_info = $g_logged_info;
 $c_contactinfo = $g_contactinfo;
-
+$c_logo = $g_logo;
 
 
 $_SESSION['s_title'] = $c_receipttitle;
@@ -132,6 +132,7 @@ $_SESSION['s_address'] = $c_address;
 $_SESSION['s_date_time'] = $c_date_time;
 $_SESSION['s_logged_info'] = $c_logged_info;
 $_SESSION['s_contactinfo'] = $c_contactinfo;
+$_SESSION['s_logo'] = $c_logo;
 
 
 ?>
