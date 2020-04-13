@@ -40,7 +40,8 @@ if(isset($_POST['send'])){
 
 <script>
 function getfee(){	
-	document.getElementById("fee").value = Number(document.getElementById("amt").value) * 0.02;
+	//document.getElementById("fee").value = Number(document.getElementById("amt").value) * 0.02;
+    document.getElementById("fee").value = Number(document.getElementById("amt").value) * <?php echo json_encode($g_fees); ?>;
 	document.getElementById("total").value = Number(document.getElementById("amt").value) + Number(document.getElementById("fee").value);
 }
 

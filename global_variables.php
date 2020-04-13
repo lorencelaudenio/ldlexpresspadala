@@ -16,6 +16,7 @@ global $g_tagline;
 global $g_address;
 global $g_contactinfo;
 global $g_today;
+global $g_fees;
 
 
 $g_title = " | LDL Express Padala";
@@ -31,6 +32,7 @@ $g_tagline = "Money On-The-Fly!";
 $g_address = "Head Office: Lumintao, Malawaan, Rizal, Occ. Mindoro";
 $g_contactinfo = "Customer Service: 09488157847/09272053904";
 $g_today = date("Y-m-d");
+$g_fees = 0.02;
 
 
 //redirect to login if no variable set for empid
