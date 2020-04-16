@@ -12,6 +12,7 @@ if(isset($_POST['filter'])){
   $v_from_date = $_POST['from_date'];
   $v_to_date = $_POST['to_date'];
   $status = $_POST['status'];
+  $usr = $_POST['usr'];
   $count = 0;
   $sql = "";
 
@@ -41,6 +42,13 @@ if(!empty($status)){
    $sql.=" status='$status' ";
 }
 
+if(!empty($usr)){
+    if(!empty($sql)){
+          $sql .= " AND ";
+       }
+
+   $sql.=" processed_by='$usr' ";
+}
 
 if($g_type == "emp"){
   if(!empty($sql)){
@@ -83,6 +91,15 @@ Status:&nbsp;
     <option name="status" value="Unclaim">Unclaim</option>
 </select>&nbsp;';
 
+if($g_type == "admin"){echo "User:&nbsp;<select name='usr' class='inputtextsearch'><option></option>";}
+
+$populate_users = mysqli_query($conn,"SELECT * from tbl_users WHERE username<>'admin'");
+while ($row = mysqli_fetch_array($populate_users)) {
+  if($g_type == "admin"){
+    echo "<option value='" . $row['username'] ." - ".$row['branch'] . "'>" . $row['username'] ." - ".$row['branch'] . "</option>";
+  }
+    }
+echo "</select>&nbsp;";
 
 
 echo '<input type="submit" class="loginbtn" value="Filter" name="filter" >

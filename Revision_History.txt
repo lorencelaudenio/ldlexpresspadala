@@ -24,3 +24,25 @@
 
 04102020v2
 -added filter by date range in view transactions
+
+04112020v1
+-added " | LDL Express Padala" in title
+
+04122020v1
+-declaring global variables
+-improved
+
+04122020v2
+-improved view transactions
+
+04122020v3
+-improved filtering
+
+04122020v4
+-fix fpdf bugs
+
+04152020v1
+-improved search filtering 
+
+04162020v1
+-improved search filtering
