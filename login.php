@@ -48,7 +48,8 @@ if(isset($_POST['login'])){
 
 
 
-<div class="container p-5 my-5 bg-primary text-white col-md-4">
+<!--<div class="container p-5 my-5 bg-primary text-white col-md-4 shadow">-->
+<div class="container shadow p-3 mb-5 bg-white rounded col-md-4">
 <center><img class="loginlogo" src="img/logo.png"/></center>
 <b><center><small><font color="#e60000">LDL Padala Express Login</font></small></center></b>
 
