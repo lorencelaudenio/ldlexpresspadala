@@ -1,6 +1,10 @@
 <?php
 error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
+include("global_variables.php");
+
+
+//include("headers.php"); wag na maglagay conflict
 
 
 $username = $password = "";
@@ -23,43 +27,44 @@ if(isset($_POST['login'])){
 			$_SESSION['s_password'] = $password;
             $_SESSION['s_branch'] = $check['branch'];
             $_SESSION['s_type'] = $check['type'];
-
-            
-            
-            
-    
-        
-            
-        
-        
-			
 			header("location: index.php");//wag lagyan ng exit
 		}else{
-			echo "<script>alert('Username/password incorrect!')</script>";
+			echo "<script>alert('Username or password was incorrect. Please try again.')</script>";
 		}
 }
-
-
 ?>
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+<link rel="icon" href="img/logo.png" type="image/x-icon">
 
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Login | LDL Express Padala</title>
 
 
-<div class="shadow">
-<center><img class="loginlogo" src="img/logo.png"/></center><br>
-<b><center><div class=""><small><font color="#e60000">LDL Padala Express Login</font></small></div></center></b><br>
+
+<div class="container p-5 my-5 bg-primary text-white col-md-4">
+<center><img class="loginlogo" src="img/logo.png"/></center>
+<b><center><small><font color="#e60000">LDL Padala Express Login</font></small></center></b>
+
 <form method="POST" action="login.php">
-Username: <br>
-<input type="text" name="username" class="logintext" placeholder="Enter Username" required ><br>
-Password: <br>
-<input type="password" name="password" class="logintext" placeholder="Enter Password" required><br>
-<input type="submit" name="login" value="Login" class="loginbtn2">
+<div class="form-group">
+<label for="username">Username:</label>
+<input type="text" name="username" class="form-control" placeholder="Enter Username" required >
+</div>
+<div class="form-group">
+<label for="password">Password:</label>
+<input type="password" name="password" class="form-control" placeholder="Enter Password" required><br>
+<input type="submit" name="login" value="Login" class="btn btn-success">
 </form>
-<?php include ('footer.php');?>
+</div>
+
 </div>
 
 
-<br>
 

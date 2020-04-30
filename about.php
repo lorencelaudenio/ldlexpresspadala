@@ -14,28 +14,76 @@ if(!isset($g_username) || empty($g_username)){
 ?>
 
 
-<!--<link rel="stylesheet" type="text/css" href="style.css">-->
+<div class="container p-3 bg-primary text-white">
 <title>About<?php echo $g_title; ?></title>
 
 <form method="POST" action="index.php">
-<b><div class="intitle"><center>About</center></div></b>
+<h2>About</center></h2>
 
 
 
-<div class="about">
-<center><img class="loginlogo" src="<?php echo $g_logo;?>"/></center><br>
-<b><center><div class=""><small><font color="#e60000"><?php echo $g_receipttitle;?></font></small></div></center></b><br>
-<p>Actually, there's nothing more in here. LDL Express Padala simulates the sending/receiving of money that is being done by most of the remittance centers here in our country. This system being developed is just a part of my Project NOGAWA ("Walang Magawa") which eventually happened during the pandemic #COVID19 on 1st quarter of 2020 to fight boredom. Since I have nothing to do rather than sleeping and staring on my smartphone the whole day that is for sure will end me up unproductive after. Tried to entertain myself with different streaming, like watching "Raffy Tulfo in Action" haha but after watching specific topic nothing interesting follows but to do coding.</p>
 
-<p>What's in a logo? Obviously, it's a bird flying with the money as it's wings (Char!). The logo signifies the fast transactions through technology innovations. It streamlined the process of sending money On-The-Fly by pushing and pulling the records out from the cloud.</p>
+<div id="demo" class="carousel slide" data-ride="carousel">
 
-<p>How do I come up with the name "LDL Express Padala"? That was my abbreviated name - Lorence D. Laudenio. How about ALREJJ Group of Companies by the way? It's just the first letter of my siblings name, Amel (Eldest), Lorence(Your's Truly), Ryan, Ervel, Jessa and Jesavel.</p>
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
 
-<p>"<i>Do something everyday that will challenge you to be a PRODUCTIVE YOU!</i>" Sooner or later it will benefits you. <br>
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/happy-family.jpg" width="1100" height="500">
+	  <div class="carousel-caption">
+		<h3 class="text-dark">Vision & Mission</h3>
+		<p class="text-dark text-justify"><?php echo $g_receipttitle;?>'s vision is to transform the lives of filipino families by providing the most trusted financial remittance across the planet. Focus has always been a key part of our strategy and our initial laser focus is on transforming the global remittance industry. Over time, we will leverage our trusted financial services brand and our global network to extend into other financial services.
 
-Email me at: <b>laudeniolorence@gmail.com</b><br>
-Facebook: <b><a href="http://www.facebook.com/renzthegeek" target="_BLANK">Lorence D. Laudenio</a></b>
 </p>
+
+		<p class="text-dark text-justify">
+		We, Team <?php echo $g_receipttitle;?>, are united through our mission - to tirelessly deliver on our promise to filipinos sending money across the world.
+		</p>
+		<p class="text-dark text-justify">
+		We accomplish our vision and mission by relentlessly focusing on culture. We’ve created <?php echo $g_receipttitle;?>’s Cultural Values, which embody how an exemplary <?php echo $g_receipttitle;?> team member and the overall <?php echo $g_receipttitle;?> team works to deliver on promises to customers everyday. That starts with putting customers at the center of everything we do.
+		</p>
+	  </div>
+    </div>
+    <div class="carousel-item">
+	<img src="img/happy-family2.jpg" width="1100" height="500">	
+	<div class="carousel-caption">
+      
+	  <p >
+		<h1 class="text-dark">Our Vision, Mission, and Values</h1>
+						<h2 class="text-dark">We're passionate about what we do – impacting lives across continents</h2>
+	  </p>
+	</div>
+    </div>
+    <div class="carousel-item">
+	<img src="img/happy-family3.jpg" width="1100" height="500">	
+	<div class="carousel-caption">
+      
+	  <p >
+		<h1 class="text-dark">Celebrate</h1>
+						<h2 class="text-dark">We celebrate how lucky we are to serve our customers and mission, to solve fascinating problems, and to work and have fun with talented colleagues.</h2>
+	  </p>
+	</div>
+    </div>
+  </div>
+
+
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+
 </div>
 
 <?php include ('footer.php');?>
