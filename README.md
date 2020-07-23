@@ -9,6 +9,8 @@ Functions:
 -Viewing transactions by current user, and all by admin
 -if logged as admin, he can manage users(add,edit/update,delete)
 
-Demo site: http://bit.ly/ldlexpresspadalav2
+Demo site: http://ldlexpresspadala.info/
+
+username: guest password: guest
 
 Requirements: fpdf - Source: http://www.fpdf.org/en/download.php this file is needed for creation of receipt in pdf format
