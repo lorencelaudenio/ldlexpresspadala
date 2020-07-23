@@ -1,7 +1,5 @@
 <?php
-//global variables
 include("conn.php");
-
 session_start();
 global $g_title;
 global $g_logged_info;
@@ -33,12 +31,4 @@ $g_address = "Head Office: Lumintao, Malawaan, Rizal, Occ. Mindoro";
 $g_contactinfo = "Customer Service: 09488157847/09272053904";
 $g_today = date("Y-m-d");
 $g_fees = 0.02;
-
-
-//redirect to login if no variable set for empid
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}
-
 ?>
-

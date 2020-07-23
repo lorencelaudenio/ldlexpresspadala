@@ -4,7 +4,10 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 
-
+//redirect to login if no variable set for empid
+if(!isset($g_username) || empty($g_username)){
+	header("location: login.php");
+}
 
 
 //conditions beg
@@ -76,22 +79,30 @@ if(!empty($sql)){
 }
 
 
-echo '
-<center><div class="notification">Total: '.$count.' record(s).</div></center>
-<b><div class="intitle"><center>View</center></div></b><div class="form">
-<form method="POST" action="view.php">
-From: <input type="date" id="from_date" class="inputtextsearch"  name="from_date" >&nbsp;To: <input   type="date" class="inputtextsearch" id="to_date" name="to_date" >&nbsp;
+echo '<div class="container p-3 bg-primary text-white">
 
 
 
-Status:&nbsp;
-<select name="status" id="statusa" value="" class="inputtextsearch">
+			
+			
+<h2>View <span class="badge badge-secondary">'.$count.'</span></h2>
+<div class="container p-3 my-3 border">
+<form class="form-inline" method="POST" action="view.php">
+<label for="from" class="mr-sm-2">From:</label>
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  name="from_date" id="from_date">
+<label for="to" class="mr-sm-2">To:</label>
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  name="to_date" id="to_date">
+ 
+
+
+<label for="status" class="mr-sm-2">Status:</label>
+<select name="status" id="statusa" value="" class="form-control mb-2 mr-sm-2">
     <option name="status" value=""></option>
     <option name="status" value="Claimed">Claimed</option>
     <option name="status" value="Unclaim">Unclaim</option>
 </select>&nbsp;';
 
-if($g_type == "admin"){echo "User:&nbsp;<select name='usr' class='inputtextsearch'><option></option>";}
+if($g_type == "admin"){echo "User:&nbsp;<select class='form-control mb-2 mr-sm-2' name='usr' class='inputtextsearch'><option></option>";}
 
 $populate_users = mysqli_query($conn,"SELECT * from tbl_users WHERE username<>'admin'");
 while ($row = mysqli_fetch_array($populate_users)) {
@@ -102,12 +113,13 @@ while ($row = mysqli_fetch_array($populate_users)) {
 echo "</select>&nbsp;";
 
 
-echo '<input type="submit" class="loginbtn" value="Filter" name="filter" >
+echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="filter" >
 </form>
+</div>
 ';
 
-	echo "<table border='1' width='100%'
-        <tr>
+	echo "<table class='table table-dark table-hover' border='1' width='100%'
+        <tr class='thead-dark'>
 		<td align='center'><b>Txn No</b></td>
 		<td align='center'><b>Amount</b></td>
 		<td align='center'><b>Sender</b></td>
@@ -148,7 +160,10 @@ echo '<input type="submit" class="loginbtn" value="Filter" name="filter" >
 
 	echo "</table><br>
 
-</div> ";
+</div> 
+</div> 
+
+";
 ?>
 
 

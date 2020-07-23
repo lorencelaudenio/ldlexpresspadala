@@ -10,7 +10,7 @@ include("global_variables.php");
 $username = $password = "";
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
 if(isset($_POST['login'])){
 		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username' AND password = '$password' ");

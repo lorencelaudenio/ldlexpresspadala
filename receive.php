@@ -4,7 +4,10 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 
-
+//redirect to login if no variable set for empid
+if(!isset($g_username) || empty($g_username)){
+	header("location: login.php");
+}
 
 $txn_no = "";
 
@@ -16,14 +19,18 @@ $current_status = $_POST['status'];
 
 
 
-
+echo '<div class="container p-3 bg-primary text-white">';
 //search
 if(isset($_POST['search'])){
     
 	$query = mysqli_query($conn,"SELECT * FROM tbl_ldlpadalaexpress WHERE txn_no='$txn_no'"); 
 	$count = mysqli_num_rows($query);
 	    if($count == "0"){
-		    echo '<center><div class="notification">' . $txn_no. ' was not found!</div></center>';
+		    echo '<center><div class="alert alert-danger fade in alert-dismissible show">'.$txn_no.' not found.
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="font-size:20px">×</span>
+  </button>
+	  </div></center>';
             
 	    }else{
             session_start();		
@@ -53,74 +60,90 @@ if(isset($_POST['search'])){
 if(isset($_POST['receive'])){
     if ($current_status == "Claimed"){
         //echo $txn_no ." already claimed! Please track.";
-         echo '<center><div class="notification"><b>'.$txn_no.'</b> already claimed! Please track.</div></center>';
+         echo '<center><div class="alert alert-warning fade in alert-dismissible show"><b>'.$txn_no.'</b> already claimed! Please track.
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="font-size:20px">×</span>
+  </button>
+	  </div></center>';
     }else{
         $sql = mysqli_query($conn,"UPDATE tbl_ldlpadalaexpress SET status='$status', date_time_claimed='$g_date_time', released_by='$g_logged_info' WHERE txn_no='$txn_no'");
 
        //echo "Money claimed succesfully!";
-        echo '<center><div class="notification"><a a href="claimreceipt.php" target="_BLANK" class="printlink"><b>' .$txn_no. '</b></a> claimed successfully!</div></center>';
+        echo '<center><div class="alert alert-success fade in alert-dismissible show"><a a href="claimreceipt.php" target="_BLANK" class="printlink"><b>' .$txn_no. '</b></a> claimed successfully!
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="font-size:20px">×</span>
+  </button>
+	  </div></center>';
 
         }
 }
 ?>
 
 
-<link rel="stylesheet" type="text/css" href="style.css">
 <title>Receive<?php echo $g_title; ?></title>
-<b><div class="intitle"><center>Receive</center></div></b>
+<h2>Receive</h2>
 <div class="form">
 
 <form method="POST" action="receive.php">
+<div class="input-group mb-3">
+<input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no; ?>" autofocus required>
+<div class="input-group-append">
+<input class="btn btn-success mb-2" type="submit" name="search" value="Search">
+<input type="hidden"   name="status" value="<?php echo $db_status; ?>" >
+</div>
+</div>
 
-<table>
-<tr>
-    <td>Transaction No.:</td><td><input type="text"  placeholder="Enter Transaction Number" class="logintext" name="txn_no" value="<?php echo $db_txn_no; ?>" autofocus required></td><td><input type="submit"  class="loginbtn" name="search" value="Search"><input type="hidden"  class="logintext" name="status" value="<?php echo $db_status; ?>" ></td>
-</tr>
 
-<tr>
-    <td><b>Sender</b></td>
-</tr>
-<tr>
-    <td>Name:</td><td><input type="text"  class="logintext" name="sender" value="<?php echo ucfirst($db_sender); ?>" readonly></td>
-</tr>
-<tr>
-    <td>Mobile No.:</td><td><input type="text"  class="logintext" name="sender_cp_no" value="<?php echo $db_sender_cp_no; ?>" readonly></td>
-</tr>
-<tr>
-    <td><b>Receiver</b></td>
-</tr>
-<tr>
-    <td>Name:</td><td><input type="text"  class="logintext" name="receiver" value="<?php echo ucfirst($db_receiver); ?>" readonly></td>
-</tr>
- 
-<tr>
-   <td>Mobile No.:</td><td><input type="text"  class="logintext" name="receiver_cp_no" value="<?php echo $db_receiver_cp_no; ?>" readonly></td>
-</tr>
- 
-<tr>
-    <td>Destination Branch:</td><td><input type="text"  class="logintext" name="dest" value="<?php echo ucfirst($db_dest); ?>" readonly></td>
-</tr>
+<div class="container p-3 my-3 border">
+	<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Sender:</span>
+    </div>
+    <input type="text" class="form-control" name="sender" value="<?php echo ucfirst($db_sender); ?>" readonly>
+	<div class="input-group-prepend">
+      <span class="input-group-text">Mobile No.:</span>
+    </div>
+    <input type="text" class="form-control" name="sender_cp_no" value="<?php echo $db_sender_cp_no; ?>" readonly>
+  </div>
+	<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Receiver:</span>
+    </div>
+    <input type="text" class="form-control" name="receiver" value="<?php echo $db_receiver; ?>" readonly >
+	<div class="input-group-prepend">
+      <span class="input-group-text">Mobile No.:</span>
+    </div>
+    <input type="text" class="form-control" name="receiver_cp_no" value="<?php echo $db_receiver_cp_no; ?>"readonly>
+  </div>
+</div>  
 
-<tr>
-    <td>Amount: </td><td><input type="text" name="amt"  class="logintext" value="<?php echo $db_amt; ?>" readonly></td>
-</tr>
- 
-<tr>
-    <td>Purpose of Transaction:</td><td><input type="text" name="purp"  class="logintext" value="<?php echo ucfirst($db_purp); ?>" readonly></td>
-</tr>
- 
-<tr>
-    <td>Relationship to Receiver:</td><td><input type="text" name="relship"  class="logintext" value="<?php echo ucfirst($db_relship); ?>" readonly></td>
-</tr>
+<div class="container p-3 my-3 border">
+		<div class="form-group">
+		<label for="name">Destination Branch:</label>
+		<input type="text" class="form-control"  name="dest" value="<?php echo ucfirst($db_dest); ?>"  readonly>
+	</div>
+	<div class="form-group">
+		<label for="name">Amount:</label>
+		<input type="text" class="form-control"  name="amt" value="<?php echo $db_amt; ?>"  readonly>
+	</div>
+	<div class="form-group">
+		<label for="name">Purpose of Transaction:</label>
+		<input type="text" class="form-control"  name="purp" value="<?php echo $db_purp; ?>"  readonly>
+	</div>
+	<div class="form-group">
+		<label for="name">Relationship to Receiver:</label>
+		<input type="text" class="form-control"  name="relship" value="<?php echo $db_relship; ?>"  readonly>
+	</div>
+</div>
 
-<tr>
-    <td>Processed by:</td><td><input type="text" name="processed_by"  class="logintext" value="<?php echo ucfirst($db_processed_by); ?>" readonly></td><td>Date/Time:</td><td><input type="text" name="date_time_sent"  class="logintext" value="<?php echo $db_date_time_sent; ?>" readonly></td>
-</tr>
-   
-<tr>
-    <td><input type="submit" name="receive"  class="loginbtn" value="Release"></td>
-</tr>
-</table>
+	<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Processed by:</span>
+    </div>
+    <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by; ?>"  readonly>
+    <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent; ?>"  readonly>
+  </div>
+  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release">
 </form>
 
 <form method="POST" action="claimreceipt.php">
@@ -157,8 +180,10 @@ $_SESSION['r_contactinfo'] = $b_contactinfo;
 $_SESSION['r_logo'] = $b_logo;
 
 ?>
+
 <input type="hidden" class="loginbtn" name="print" value="Print">
 </form>
 
+</div>
 </div>
 <?php include ('footer.php');?>

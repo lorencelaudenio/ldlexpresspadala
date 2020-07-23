@@ -37,14 +37,16 @@ return del;
 <title>Admin Panel<?php echo $g_title; ?></title>
 
 
-<b><div class="intitle"><center>Admin Panel</center></div></b>
-<div class="form">
-    <form method="POST" action="admin.php">
-    <a href="adduser.php">User Management</a><br>
-    <a href="deletesingletxn.php">Delete Single Transaction</a><br>
-    <input type="submit" name="deleteall" value="Delete All Transactions" onclick="return deleteconfig()">
+
+<div class="container p-3 bg-primary text-white">
+<h2>Admin Panel</h2>
+    <div class="container p-3 my-3 border">
+	<form method="POST" action="admin.php">
+		<a class="btn btn-success mb-2" href="adduser.php">User Management</a><br>
+		<a class="btn btn-success mb-2" href="deletesingletxn.php">Delete Single Transaction</a><br>
+		<input class="btn btn-success mb-2" type="submit" name="deleteall" value="Delete All Transactions" onclick="return deleteconfig()">
     </form>
-    
+    </div>
 </div>
 </div>
 <?php include ('footer.php');?>

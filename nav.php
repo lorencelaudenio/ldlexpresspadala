@@ -2,26 +2,41 @@
 ob_start();//important para no header error
 include('conn.php');
 include('global_variables.php');
+include('headers.php');
+
+//redirect to login if no variable set for empid
+if(!isset($g_username) || empty($g_username)){
+	header("location: login.php");
+}
 ?>
+<nav class="container bg-secondary text-white navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="rounded" style="width:40px;"></a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="shortcut icon" type="image/png" href="<?php echo $g_logo;?>">
-
-<a href="index.php" ><img class="logo" src="<?php echo $g_logo;?>"><label class="ldl-logo"><?php echo $g_receipttitle;?></label></a><br>
-<small><i><div class="under_logo"><?php echo $g_tagline;?></div></i></small>
-
-<br>
-
-<ul>
-  <li><a href="index.php">Track</a></li>
-  <li><a href="send.php">Send</a></li>
-  <li><a href="receive.php">Receive</a></li>
-      <li><a href="view.php">View</a></li>
-<li><?php if ($g_type == 'admin'){echo '<a href="admin.php">Admin</a>';}?></li>
-  <li><a href="about.php">About</a></li>
-   
-  <li style="float:right"><a class="active" href="logout.php">Logout</a></li>
-</ul>
-
-
+  <div class="collapse navbar-collapse" id="navb">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">Track</a>
+      </li>
+	<li class="nav-item">
+        <a class="nav-link" href="send.php">Send</a>
+      </li>
+	<li class="nav-item">
+        <a class="nav-link" href="receive.php">Receive</a>
+      </li>
+	<li class="nav-item">
+        <a class="nav-link" href="view.php">View</a>
+      </li>
+	<li class="nav-item">
+		<?php if ($g_type == 'admin'){echo '<a class="nav-link" href="admin.php">Admin</a>';}?>
+      </li>
+	<li class="nav-item">
+        <a class="nav-link" href="about.php">About</a>
+      </li>
+    </ul>
+      <a href="logout.php" class="btn btn-danger my-2 my-sm-0">Logout</a>
+    </form>
+  </div>
+</nav>

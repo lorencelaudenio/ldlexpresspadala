@@ -4,7 +4,10 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 
-
+//redirect to login if no variable set for empid
+if(!isset($g_username) || empty($g_username)){
+	header("location: login.php");
+}
 
 $txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
 
@@ -25,13 +28,17 @@ $date_time_sent=$g_date_time;
 $date_time_claimed="";
 $processed_by=$g_logged_info;
 $released_by=$_POST['released_by'];
-
+echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
     $supernew_txn_code = $new_txn_code;
     $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
 
     //echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
-    echo '<center><div class="notification">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $supernew_txn_code. '</a></b>!</div></center>';
+    echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $supernew_txn_code. '</a></b>!
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="font-size:20px">×</span>
+  </button>
+	  </div></center>';
     $_SESSION['s_txn_no'] = $txn_no;
 }
 
@@ -53,54 +60,69 @@ function getdestcode(){
 </script>
 
 <title>Send<?php echo $g_title; ?></title>
-<b><div class="intitle"><center>Send</center></div></b>
-<div class="form">
+<h2>Send</h2>
 
 <form method="POST" action="send.php">
 
-<table>
-<tr>
-    <td><b>Sender</b></td>
-</tr>
-<tr>
-    <td>Name:</td><td><input type="text"  class="logintext" name="sender" value="<?php echo $sender; ?>" required autofocus></td>
-</tr> 
-<tr>
-    <td>Mobile No.:</td><td><input type="text"  class="logintext" name="sender_cp_no" value="<?php echo $sender_cp_no; ?>"required></td>
-</tr>
- 
-<tr>
-    <td><b>Receiver</b></td>
-</tr>
-<tr>
-    <td>Name:</td><td><input type="text"  class="logintext" name="receiver" value="<?php echo $receiver; ?>"required></td>
-</tr>
- 
-<tr>
-    <td>Mobile No.:</td><td><input type="text"  class="logintext" name="receiver_cp_no" value="<?php echo $receiver_cp_no; ?>" required></td>
-</tr>
- 
-<tr>
-    <td>Destination Branch:</td><td><input type="text"  onchange="getdestcode()" class="logintext" name="dest" id="dest" value="<?php echo $dest; ?>" required><input type="hidden" id="destcode" name="destcode"></td>
-</tr>
- 
-<tr>
-    <td>Amount:</td><td><input type="text" onchange="getfee()"  class="logintext" id="amt" name="amt" value="<?php echo $amt; ?>" required></td><td>Fee:</td><td><input type="text" name="fee"  class="number" id="fee"></td><td>Total:</td><td> <input type="text"  class="number" name="total" id="total"></td>
-</tr>
-     
-<tr>
-    <td>Purpose of Transaction:</td><td><input type="text"  class="logintext" name="purp" value="<?php echo $purp; ?>" required></td>
-</tr>
 
-<tr>
-    <td>Relationship to Receiver:</td><td> <input type="text"  class="logintext" name="relship" value="<?php echo $relship; ?>" required></td>
-</tr>
-<tr>
-    <td><input type="submit" class="loginbtn" name="send" value="Send"></td>
-</tr>
+<div class="container p-3 my-3 border">
+	<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Sender:</span>
+    </div>
+    <input type="text" class="form-control" name="sender" value="<?php echo $sender; ?>" required autofocus>
+	<div class="input-group-prepend">
+      <span class="input-group-text">Mobile No.:</span>
+    </div>
+    <input type="text" class="form-control" name="sender_cp_no" value="<?php echo $sender_cp_no; ?>"required>
+  </div>
+	<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Receiver:</span>
+    </div>
+    <input type="text" class="form-control" name="receiver" value="<?php echo $receiver; ?>" required >
+	<div class="input-group-prepend">
+      <span class="input-group-text">Mobile No.:</span>
+    </div>
+    <input type="text" class="form-control" name="receiver_cp_no" value="<?php echo $receiver_cp_no; ?>"required>
+  </div>
+</div>  
+  <div class="container p-3 my-3 border">
+		<div class="form-group">
+		<label for="name">Destination Branch:</label>
+		<input type="text" class="form-control"  onchange="getdestcode()" name="dest" id="dest" value="<?php echo $dest; ?>" required>
+		<input type="hidden" id="destcode" name="destcode">
+	</div>
+	
+		<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Amount:</span>
+    </div>
+    <input type="text" class="form-control"  onchange="getfee()" name="amt" id="amt" value="<?php echo $amt; ?>" required>
+	<div class="input-group-prepend">
+      <span class="input-group-text">Fee:</span>
+    </div>
+    <input type="text" name="fee"  class="number" id="fee">
+	<div class="input-group-prepend">
+      <span class="input-group-text">Total:</span>
+    </div>
+    <input type="text"  class="number" name="total" id="total">
+  </div>
+
+	
+	<div class="form-group">
+		<label for="name">Purpose of Transaction:</label>
+		<input type="text"  class="form-control" name="purp" value="<?php echo $purp; ?>" required>
+	</div>
+	<div class="form-group">
+		<label for="name">Relationship to Receiver:</label>
+		<input type="text"  class="form-control" name="relship" value="<?php echo $relship; ?>" required>
+	</div>
+	
+</div>
+<input type="submit" class="btn btn-success mb-2" name="send" value="Send">
 
 
-</table>
 </form>
 
 <form method="POST" action="print.php">
