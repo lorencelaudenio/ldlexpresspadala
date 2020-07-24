@@ -10,7 +10,13 @@ include("global_variables.php");
 $username = $password = "";
 
 $username = $_POST['username'];
-$password = md5($_POST['password']);
+//$password = md5($_POST['password']);
+$password = hash('sha256', $_POST['password']);
+//echo $password;
+
+
+
+
 
 if(isset($_POST['login'])){
 		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username' AND password = '$password' ");
@@ -27,9 +33,21 @@ if(isset($_POST['login'])){
 			$_SESSION['s_password'] = $password;
             $_SESSION['s_branch'] = $check['branch'];
             $_SESSION['s_type'] = $check['type'];
+			
+				if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+					$ip = $_SERVER['HTTP_CLIENT_IP'];
+				} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				} else {
+					$ip = $_SERVER['REMOTE_ADDR'];
+				}
+			$_SESSION['s_ipadd'] = $ip;
+			
+			$updateip = mysqli_query($conn,"update tbl_users set ip_address='$ip' where username='$username'");
+			
 			header("location: index.php");//wag lagyan ng exit
 		}else{
-			echo "<script>alert('Username or password was incorrect. Please try again.')</script>";
+			echo "<script>alert('Login failed: Invalid username or password.')</script>";
 		}
 }
 ?>
@@ -49,22 +67,38 @@ if(isset($_POST['login'])){
 
 
 <!--<div class="container p-5 my-5 bg-primary text-white col-md-4 shadow">-->
-<div class="container shadow p-3 mb-5 bg-white rounded col-md-4">
+
+
+
+
+
+
+
+<div class="login-form">
+    <form action="login.php" method="post">
 <center><img class="loginlogo" src="img/logo.png"/></center>
-<b><center><small><font color="#e60000">LDL Padala Express Login</font></small></center></b>
-
-<form method="POST" action="login.php">
-<div class="form-group">
-<label for="username">Username:</label>
-<input type="text" name="username" class="form-control" placeholder="Enter Username" required >
-</div>
-<div class="form-group">
-<label for="password">Password:</label>
-<input type="password" name="password" class="form-control" placeholder="Enter Password" required><br>
-<input type="submit" name="login" value="Login" class="btn btn-success">
-</form>
-</div>
-
+<b><center><small><font color="#e60000">LDL Padala Express</font></small>
+</center></b>
+        <h2 class="text-center">Log in</h2> 
+		
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" name="login" class="btn btn-primary btn-block">Log in</button>
+        </div>
+			Login details: <br>username: <b>guest</b> <br>password: <b>bisita</b>
+		<div>
+		</div>
+        <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>        
+    </form>
+    <p class="text-center"><a href="#">Create an Account</a></p>
 </div>
 
 
