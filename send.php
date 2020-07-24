@@ -28,6 +28,7 @@ $date_time_sent=$g_date_time;
 $date_time_claimed="";
 $processed_by=$g_logged_info;
 $released_by=$_POST['released_by'];
+
 echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
     $supernew_txn_code = $new_txn_code;

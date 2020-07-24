@@ -127,6 +127,8 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
         <td align='center'><b>Date</b></td>
         <td align='center'><b>Processed by</b></td>
         <td align='center'><b>Status</b></td>
+        <td align='center'><b>Send Receipt</b></td>
+        <td align='center'><b>Receive Receipt</b></td>
 		</tr>";
 
 	//while($row = mysqli_fetch_assoc($view_query)) {
@@ -140,6 +142,9 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       $db_date_time_sent = $row["date_time_sent"];
       $db_processed_by = $row["processed_by"];
       $db_status = $row["status"];
+      $db_send_receipt = $row["send_receipt"];
+	        $db_receive_receipt = $row["receive_receipt"];
+
   echo "<tr>
   <td>$db_txn_no</td>
   <td>$db_amt</td>
@@ -148,6 +153,8 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       <td>$db_date_time_sent</td>
       <td>$db_processed_by</td>
       <td>$db_status</td>
+      <td><a href='$db_send_receipt' target='_blank'>Receipt</a></td>
+      <td><a href='$db_receive_receipt' target='_blank'>Receipt</a></td>
   </tr>";
 
 

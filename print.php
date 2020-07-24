@@ -1,5 +1,5 @@
 <?php
-
+include("conn.php");
 require("fpdf182_2/fpdf.php");
 session_start();
 $d_txn_no = $_SESSION['s_txn_no'];
@@ -79,8 +79,9 @@ $d_logo = $_SESSION['s_logo'];
     $pdf->Output();
 
 $filename="receipt/S".$d_txn_no.".pdf"; //path must not started to / and use single apostrophe
+
 $pdf->Output($filename,'F');
 //header('location:'.$filename); pwedeng wala
-
+$updatesendreceipt = mysqli_query($conn, "UPDATE tbl_ldlpadalaexpress SET send_receipt='$filename' where txn_no='$d_txn_no'");
 
 ?>
