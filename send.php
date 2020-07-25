@@ -123,7 +123,7 @@ function getdestcode(){
 	</div>
 	
 </div>
-<input type="submit" class="btn btn-success mb-2" name="send" value="Send">
+<input type="submit" onclick="doSomething();" class="btn btn-success mb-2" name="send" value="Send">
 
 
 </form>
@@ -167,3 +167,9 @@ $_SESSION['s_logo'] = $c_logo;
 </div>
 <br>
 <?php include ('footer.php');?>
+<script type="text/javascript"> 
+function doSomething() { 
+    $.get("print.php"); 
+    return false; 
+} 
+</script>

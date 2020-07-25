@@ -143,7 +143,7 @@ if(isset($_POST['receive'])){
     <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by; ?>"  readonly>
     <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent; ?>"  readonly>
   </div>
-  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release">
+  <input class="btn btn-success mb-2" onclick="doReceive();" type="submit" name="receive" value="Release">
 </form>
 
 <form method="POST" action="claimreceipt.php">
@@ -187,3 +187,10 @@ $_SESSION['r_logo'] = $b_logo;
 </div>
 </div>
 <?php include ('footer.php');?>
+<script type="text/javascript"> 
+function doReceive() { 
+    $.get("claimreceipt.php"); 
+    return false; 
+} 
+</script>
+
