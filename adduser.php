@@ -16,8 +16,8 @@ if(!isset($g_username) || empty($g_username)){
 //redirect to login if no variable set for empid and not admin end
 
 $username = $_POST['username'];
-$password = md5($_POST['password']);
-$cpassword = md5($_POST['cpassword']);
+$password = hash('sha256', $_POST['password']);
+$cpassword = hash('sha256', $_POST['password']);
 $branch = $_POST['branch'];
 $type = $_POST['type'];
 $date_enrolled = $g_date_time;
@@ -25,7 +25,14 @@ $date_enrolled = $g_date_time;
 //add
 if(isset($_POST['add'])){
     
-    $query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username='$username'"); 
+    if($_POST['username'] == $_POST['password']){
+		echo '<center><div class="alert alert-danger fade in alert-dismissible show">' . ' Password must not be the same as Username!
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="font-size:20px">×</span>
+  </button>
+	  </div></center>';
+	}else{
+		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username='$username'"); 
 	$count = mysqli_num_rows($query);
 	    if($count == "0"){
 
@@ -57,6 +64,7 @@ if(isset($_POST['add'])){
                   
             
         }
+	}
 		
 }
 
@@ -86,10 +94,10 @@ if(isset($_POST['search'])){
 }
 
 if(isset($_POST['delete'])){
-    $searchdeletequery = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username'");
+    $searchdeletequery = mysqli_query($conn,"SELECT * FROM tbl_users WHERE type <> 'admin' AND username = '$username'");
 	$searchdeletecount = mysqli_num_rows($searchdeletequery);
 	    if($searchdeletecount == "0"){
-		    echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' was not found!
+		    echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' was not found/deleting admin type is prohibited!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true" style="font-size:20px">×</span>
   </button>

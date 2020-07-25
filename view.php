@@ -153,8 +153,8 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       <td>$db_date_time_sent</td>
       <td>$db_processed_by</td>
       <td>$db_status</td>
-      <td><a href='$db_send_receipt' target='_blank'>Receipt</a></td>
-      <td><a href='$db_receive_receipt' target='_blank'>Receipt</a></td>
+      <td><a href='$db_send_receipt' class='btn btn-primary ' target=”_blank”>View</a></td>
+      <td><a href='$db_receive_receipt' class='btn btn-primary ' target=”_blank”>View</a></td>
   </tr>";
 
 
@@ -174,7 +174,12 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
 ?>
 
 
-
 <title>View <?php echo $g_title; ?></title>
 
+
+
 <?php include ('footer.php');?>
+
+
+
+

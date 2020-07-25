@@ -82,6 +82,7 @@ $filename="receipt/S".$d_txn_no.".pdf"; //path must not started to / and use sin
 
 $pdf->Output($filename,'F');
 //header('location:'.$filename); pwedeng wala
-$updatesendreceipt = mysqli_query($conn, "UPDATE tbl_ldlpadalaexpress SET send_receipt='$filename' where txn_no='$d_txn_no'");
+
+$sql = mysqli_query($conn, "UPDATE tbl_ldlpadalaexpress SET send_receipt='$filename' where txn_no='$d_txn_no'");
 
 ?>

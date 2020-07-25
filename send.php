@@ -9,7 +9,7 @@ if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
 }
 
-$txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
+$txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = $send_receipt = $receive_receipt =  "";
 
 $origin_code = strtoupper(substr($g_branch,0,3));
 $dest_code = $_POST['destcode'];
@@ -28,11 +28,13 @@ $date_time_sent=$g_date_time;
 $date_time_claimed="";
 $processed_by=$g_logged_info;
 $released_by=$_POST['released_by'];
+$send_receipt ="";
+$receive_receipt ="";
 
 echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
     $supernew_txn_code = $new_txn_code;
-    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
+    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by, send_receipt, receive_receipt) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by', '$send_receipt', '$receive_receipt')");
 
     //echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
     echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $supernew_txn_code. '</a></b>!
