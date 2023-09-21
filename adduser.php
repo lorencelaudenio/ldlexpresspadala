@@ -15,24 +15,17 @@ if(!isset($g_username) || empty($g_username)){
 }
 //redirect to login if no variable set for empid and not admin end
 
-$username = $_POST['username'];
-$password = hash('sha256', $_POST['password']);
-$cpassword = hash('sha256', $_POST['password']);
-$branch = $_POST['branch'];
-$type = $_POST['type'];
+$username = $_POST['username'] ?? null;
+$password = $_POST['password']  ?? null;
+$cpassword = $_POST['cpassword']  ?? null;
+$branch = $_POST['branch']  ?? null;
+$type = $_POST['type']  ?? null;
 $date_enrolled = $g_date_time;
 
 //add
 if(isset($_POST['add'])){
     
-    if($_POST['username'] == $_POST['password']){
-		echo '<center><div class="alert alert-danger fade in alert-dismissible show">' . ' Password must not be the same as Username!
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true" style="font-size:20px">×</span>
-  </button>
-	  </div></center>';
-	}else{
-		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username='$username'"); 
+    $query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username='$username'"); 
 	$count = mysqli_num_rows($query);
 	    if($count == "0"){
 
@@ -64,7 +57,6 @@ if(isset($_POST['add'])){
                   
             
         }
-	}
 		
 }
 
@@ -94,10 +86,10 @@ if(isset($_POST['search'])){
 }
 
 if(isset($_POST['delete'])){
-    $searchdeletequery = mysqli_query($conn,"SELECT * FROM tbl_users WHERE type <> 'admin' AND username = '$username'");
+    $searchdeletequery = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username'");
 	$searchdeletecount = mysqli_num_rows($searchdeletequery);
 	    if($searchdeletecount == "0"){
-		    echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' was not found/deleting admin type is prohibited!
+		    echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' was not found!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true" style="font-size:20px">×</span>
   </button>
@@ -148,7 +140,7 @@ return del;
     <form method="POST" action="adduser.php">
 <label for="username">Username:</label>
 <div class="input-group mb-3">
-<input placeholder="Enter Username" class="form-control" type="text" name="username" value="<?php echo $db_username; ?>"  required>
+<input placeholder="Enter Username" class="form-control" type="text" name="username" value="<?php echo $db_username ?? null; ?>"  required>
 <div class="input-group-append">
 <input class="btn btn-success mb-2" type="submit" name="search" value="Search">
 </div>
@@ -159,7 +151,7 @@ return del;
     <div class="input-group-prepend">
       <span class="input-group-text">Password:</span>
     </div>
-    <input type="password" name="password" class="form-control"  value="<?php echo $db_password; ?>">
+    <input type="password" name="password" class="form-control"  value="<?php echo $db_password ?? null; ?>">
 	<div class="input-group-prepend">
       <span class="input-group-text">Confirm:</span>
     </div>
@@ -168,11 +160,11 @@ return del;
 
 
 	<label for="branch">Branch:</label>
-    <input type="text" name="branch" class="form-control"  value="<?php echo $db_branch; ?>">
+    <input type="text" name="branch" class="form-control"  value="<?php echo $db_branch ?? null; ?>">
 	<label for="type">Type:</label>
     <input type="text" name="type" class="form-control"  value="emp" value="<?php echo $db_type; ?>">
 	<label for="date_enrolled">Date/Time Enrolled:</label>
-    <input type="text" name="date_enrolled" class="form-control"  value="<?php echo $db_date_enrolled; ?>" readonly>
+    <input type="text" name="date_enrolled" class="form-control"  value="<?php echo $db_date_enrolled ?? null; ?>" readonly>
     <input type="submit" name="add" class="btn btn-success mb-2" value="Add">&nbsp;<input type="submit" name="update" class="btn btn-success mb-2" value="Edit/Update">&nbsp;<input type="submit" name="delete" class="btn btn-success mb-2" value="Delete" onclick="return deleteconfig()">
     
     </form>
