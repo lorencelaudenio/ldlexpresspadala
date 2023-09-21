@@ -11,11 +11,11 @@ if(!isset($g_username) || empty($g_username)){
 
 $txn_no = "";
 
-$txn_no=$_POST['txn_no'];
+$txn_no=$_POST['txn_no'] ?? null;
 
 
 $status = "Claimed";
-$current_status = $_POST['status'];
+$current_status = $_POST['status'] ?? null;
 
 
 
@@ -86,7 +86,7 @@ if(isset($_POST['receive'])){
 
 <form method="POST" action="receive.php">
 <div class="input-group mb-3">
-<input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no; ?>" autofocus required>
+<input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
 <div class="input-group-append">
 <input class="btn btn-success mb-2" type="submit" name="search" value="Search">
 <input type="hidden"   name="status" value="<?php echo $db_status; ?>" >
@@ -99,40 +99,40 @@ if(isset($_POST['receive'])){
     <div class="input-group-prepend">
       <span class="input-group-text">Sender:</span>
     </div>
-    <input type="text" class="form-control" name="sender" value="<?php echo ucfirst($db_sender); ?>" readonly>
+    <input type="text" class="form-control" name="sender" value="<?php echo ucfirst($db_sender  ?? null); ?>" readonly>
 	<div class="input-group-prepend">
       <span class="input-group-text">Mobile No.:</span>
     </div>
-    <input type="text" class="form-control" name="sender_cp_no" value="<?php echo $db_sender_cp_no; ?>" readonly>
+    <input type="text" class="form-control" name="sender_cp_no" value="<?php echo $db_sender_cp_no  ?? null; ?>" readonly>
   </div>
 	<div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">Receiver:</span>
     </div>
-    <input type="text" class="form-control" name="receiver" value="<?php echo $db_receiver; ?>" readonly >
+    <input type="text" class="form-control" name="receiver" value="<?php echo $db_receiver  ?? null; ?>" readonly >
 	<div class="input-group-prepend">
       <span class="input-group-text">Mobile No.:</span>
     </div>
-    <input type="text" class="form-control" name="receiver_cp_no" value="<?php echo $db_receiver_cp_no; ?>"readonly>
+    <input type="text" class="form-control" name="receiver_cp_no" value="<?php echo $db_receiver_cp_no  ?? null; ?>"readonly>
   </div>
 </div>  
 
 <div class="container p-3 my-3 border">
 		<div class="form-group">
 		<label for="name">Destination Branch:</label>
-		<input type="text" class="form-control"  name="dest" value="<?php echo ucfirst($db_dest); ?>"  readonly>
+		<input type="text" class="form-control"  name="dest" value="<?php echo ucfirst($db_dest  ?? null); ?>"  readonly>
 	</div>
 	<div class="form-group">
 		<label for="name">Amount:</label>
-		<input type="text" class="form-control"  name="amt" value="<?php echo $db_amt; ?>"  readonly>
+		<input type="text" class="form-control"  name="amt" value="<?php echo $db_amt  ?? null; ?>"  readonly>
 	</div>
 	<div class="form-group">
 		<label for="name">Purpose of Transaction:</label>
-		<input type="text" class="form-control"  name="purp" value="<?php echo $db_purp; ?>"  readonly>
+		<input type="text" class="form-control"  name="purp" value="<?php echo $db_purp  ?? null; ?>"  readonly>
 	</div>
 	<div class="form-group">
 		<label for="name">Relationship to Receiver:</label>
-		<input type="text" class="form-control"  name="relship" value="<?php echo $db_relship; ?>"  readonly>
+		<input type="text" class="form-control"  name="relship" value="<?php echo $db_relship  ?? null; ?>"  readonly>
 	</div>
 </div>
 
@@ -140,10 +140,10 @@ if(isset($_POST['receive'])){
     <div class="input-group-prepend">
       <span class="input-group-text">Processed by:</span>
     </div>
-    <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by; ?>"  readonly>
-    <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent; ?>"  readonly>
+    <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by  ?? null; ?>"  readonly>
+    <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent  ?? null; ?>"  readonly>
   </div>
-  <input class="btn btn-success mb-2" onclick="doReceive();" type="submit" name="receive" value="Release">
+  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release">
 </form>
 
 <form method="POST" action="claimreceipt.php">
@@ -151,15 +151,15 @@ if(isset($_POST['receive'])){
 
 
 session_start();
-$_SESSION['r_txn_no'] = $_POST['txn_no'];
-$_SESSION['r_sender'] = $_POST['sender'];
-$_SESSION['r_sender_cp_no']=$_POST['sender_cp_no'];
-$_SESSION['r_dest']=ucfirst($_POST['dest']);
-$_SESSION['r_amt']=$_POST['amt'];
-$_SESSION['r_receiver'] = $_POST['receiver'];
-$_SESSION['r_receiver_cp_no']=$_POST['receiver_cp_no'];
-$_SESSION['r_relship']=$_POST['relship'];
-$_SESSION['r_purp']=$_POST['purp']; 
+$_SESSION['r_txn_no'] = $_POST['txn_no'] ?? null;
+$_SESSION['r_sender'] = $_POST['sender'] ?? null;
+$_SESSION['r_sender_cp_no']=$_POST['sender_cp_no'] ?? null;
+$_SESSION['r_dest']=ucfirst($_POST['dest'] ?? null) ?? null;
+$_SESSION['r_amt']=$_POST['amt'] ?? null;
+$_SESSION['r_receiver'] = $_POST['receiver'] ?? null;
+$_SESSION['r_receiver_cp_no']=$_POST['receiver_cp_no'] ?? null;
+$_SESSION['r_relship']=$_POST['relship'] ?? null;
+$_SESSION['r_purp']=$_POST['purp'] ?? null; 
 
 $b_receipttitle = $g_receipttitle;
 $b_tagline = $g_tagline;
@@ -187,10 +187,3 @@ $_SESSION['r_logo'] = $b_logo;
 </div>
 </div>
 <?php include ('footer.php');?>
-<script type="text/javascript"> 
-function doReceive() { 
-    $.get("claimreceipt.php"); 
-    return false; 
-} 
-</script>
-
