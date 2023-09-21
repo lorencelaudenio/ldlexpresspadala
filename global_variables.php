@@ -18,10 +18,10 @@ global $g_fees;
 
 
 $g_title = " | LDL Express Padala";
-$g_username = $_SESSION['s_username'];
-$g_password = $_SESSION['s_password'];
-$g_branch = $_SESSION['s_branch'];
-$g_type = $_SESSION['s_type'];
+$g_username = $_SESSION['s_username'] ?? null;
+$g_password = $_SESSION['s_password']  ?? null;
+$g_branch = $_SESSION['s_branch']  ?? null;
+$g_type = $_SESSION['s_type']  ?? null;
 $g_date_time = date("Y-m-d h:i:s");
 $g_logged_info = $g_username . " - " . $g_branch;
 $g_logo = "img/logo.png";
