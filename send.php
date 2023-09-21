@@ -9,32 +9,29 @@ if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
 }
 
-$txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = $send_receipt = $receive_receipt =  "";
+$txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
 
 $origin_code = strtoupper(substr($g_branch,0,3));
-$dest_code = $_POST['destcode'];
+$dest_code = $_POST['destcode'] ?? null;
 $new_txn_code = $origin_code . "-" . date("mdyhis") . "-" . $dest_code;
 $txn_no=$new_txn_code;
 $status="Unclaim";
-$amt=$_POST['amt'];
-$sender=$_POST['sender'];
-$sender_cp_no=$_POST['sender_cp_no'];
-$dest=$_POST['dest'];
-$receiver=$_POST['receiver'];
-$receiver_cp_no=$_POST['receiver_cp_no'];
-$relship=$_POST['relship'];
-$purp=$_POST['purp'];
+$amt=$_POST['amt'] ?? null;
+$sender=$_POST['sender'] ?? null;
+$sender_cp_no=$_POST['sender_cp_no'] ?? null;
+$dest=$_POST['dest'] ?? null;
+$receiver=$_POST['receiver'] ?? null;
+$receiver_cp_no=$_POST['receiver_cp_no'] ?? null;
+$relship=$_POST['relship'] ?? null;
+$purp=$_POST['purp'] ?? null;
 $date_time_sent=$g_date_time;
 $date_time_claimed="";
 $processed_by=$g_logged_info;
-$released_by=$_POST['released_by'];
-$send_receipt ="";
-$receive_receipt ="";
-
+$released_by=$_POST['released_by'] ?? null;
 echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
     $supernew_txn_code = $new_txn_code;
-    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by, send_receipt, receive_receipt) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by', '$send_receipt', '$receive_receipt')");
+    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
 
     //echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
     echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $supernew_txn_code. '</a></b>!
@@ -123,7 +120,7 @@ function getdestcode(){
 	</div>
 	
 </div>
-<input type="submit" onclick="doSomething();" class="btn btn-success mb-2" name="send" value="Send">
+<input type="submit" class="btn btn-success mb-2" name="send" value="Send">
 
 
 </form>
@@ -131,7 +128,7 @@ function getdestcode(){
 <form method="POST" action="print.php">
 <?php
 session_start();
-$p_txn_no=$supernew_txn_code;
+$p_txn_no=$supernew_txn_code ?? null;
 $_SESSION['s_txn_no'] = $p_txn_no;
 $_SESSION['s_sender'] = ucfirst($sender);
 $_SESSION['s_sender_cp_no']=$sender_cp_no;
@@ -167,9 +164,3 @@ $_SESSION['s_logo'] = $c_logo;
 </div>
 <br>
 <?php include ('footer.php');?>
-<script type="text/javascript"> 
-function doSomething() { 
-    $.get("print.php"); 
-    return false; 
-} 
-</script>
