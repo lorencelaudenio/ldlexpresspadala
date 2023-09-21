@@ -15,7 +15,7 @@ if(!isset($g_username) || empty($g_username)){
 }
 //redirect to login if no variable set for empid and not admin end
 
-$txn_no = $_POST['txn_no'];
+$txn_no = $_POST['txn_no'] ?? null;
 
 
 echo '<div class="container p-3 bg-primary text-white">';
@@ -73,7 +73,7 @@ return del;
 	<form method="POST" action="deletesingletxn.php">
 	<label for="txn_no">Transaction No.:</label>
 	<div class="input-group mb-3">
-    <input type="text" name="txn_no" class="form-control" value="<?php echo $_POST['txn_no']; ?>" required>
+    <input type="text" name="txn_no" class="form-control" value="<?php echo $_POST['txn_no'] ?? null; ?>" required>
 	<div class="input-group-prepend">
       <input type="submit" name="delete" class="btn btn-danger my-2 my-sm-0" value="Delete">
     </div>
