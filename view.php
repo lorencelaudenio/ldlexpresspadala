@@ -4,6 +4,8 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 
+$count = 0;
+
 //redirect to login if no variable set for empid
 if(!isset($g_username) || empty($g_username)){
 	header("location: login.php");
@@ -15,8 +17,8 @@ if(isset($_POST['filter'])){
   $v_from_date = $_POST['from_date'];
   $v_to_date = $_POST['to_date'];
   $status = $_POST['status'];
-  $usr = $_POST['usr'];
-  $count = 0;
+  $usr = $_POST['usr'] ?? null;
+  
   $sql = "";
 
 $sql_select ="SELECT * FROM tbl_ldlpadalaexpress";
@@ -100,7 +102,7 @@ echo '<div class="container p-3 bg-primary text-white">
     <option name="status" value=""></option>
     <option name="status" value="Claimed">Claimed</option>
     <option name="status" value="Unclaim">Unclaim</option>
-</select>&nbsp;';
+</select>&nbsp;' ?? null;
 
 if($g_type == "admin"){echo "User:&nbsp;<select class='form-control mb-2 mr-sm-2' name='usr' class='inputtextsearch'><option></option>";}
 
@@ -127,13 +129,11 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
         <td align='center'><b>Date</b></td>
         <td align='center'><b>Processed by</b></td>
         <td align='center'><b>Status</b></td>
-        <td align='center'><b>Send Receipt</b></td>
-        <td align='center'><b>Receive Receipt</b></td>
 		</tr>";
 
 	//while($row = mysqli_fetch_assoc($view_query)) {
-  if($ito_dapat){//important ito to fix mysqli_fetch_assoc() expects parameter 1 to be
-  while($row = mysqli_fetch_assoc($ito_dapat)) {
+  if($ito_dapat ?? null){//important ito to fix mysqli_fetch_assoc() expects parameter 1 to be
+  while($row = mysqli_fetch_assoc($ito_dapat ?? null)) {
 
   $db_txn_no = $row["txn_no"];
   $db_amt = $row["amt"];
@@ -142,9 +142,6 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       $db_date_time_sent = $row["date_time_sent"];
       $db_processed_by = $row["processed_by"];
       $db_status = $row["status"];
-      $db_send_receipt = $row["send_receipt"];
-	        $db_receive_receipt = $row["receive_receipt"];
-
   echo "<tr>
   <td>$db_txn_no</td>
   <td>$db_amt</td>
@@ -153,8 +150,6 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       <td>$db_date_time_sent</td>
       <td>$db_processed_by</td>
       <td>$db_status</td>
-      <td><a href='$db_send_receipt' class='btn btn-primary ' target=”_blank”>View</a></td>
-      <td><a href='$db_receive_receipt' class='btn btn-primary ' target=”_blank”>View</a></td>
   </tr>";
 
 
@@ -174,12 +169,7 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
 ?>
 
 
+
 <title>View <?php echo $g_title; ?></title>
 
-
-
 <?php include ('footer.php');?>
-
-
-
-
