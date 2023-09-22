@@ -15,6 +15,9 @@ LDL ExpressPadala Features:
 
 7. Receipt Storage: Copies of receipts are saved on the server for easy retrieval. Users can access their transaction history and download receipts whenever needed.
 
-username: guest password: guest
+
+Demo site: https://ldlexpresspadala.000.pe/
+username: guest 
+password: guest
 
 Requirements: fpdf - Source: http://www.fpdf.org/en/download.php this file is needed for creation of receipt in pdf format
