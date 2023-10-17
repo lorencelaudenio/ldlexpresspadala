@@ -4,16 +4,7 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 echo '<div class="container p-3 bg-primary text-white">';
-//redirect to login if no variable set for empid and not admin beg
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}else{
-    if($g_type != "admin"){
-       
-        header("location: index.php");
-    }
-}
-//redirect to login if no variable set for empid and not admin end
+include("verify_if_admin.php");
 
 $username = $_POST['username'] ?? null;
 $password = $_POST['password']  ?? null;
@@ -21,6 +12,7 @@ $cpassword = $_POST['cpassword']  ?? null;
 $branch = $_POST['branch']  ?? null;
 $type = $_POST['type']  ?? null;
 $date_enrolled = $g_date_time;
+$type = $_POST['type']  ?? null;
 
 //add
 if(isset($_POST['add'])){
@@ -116,22 +108,9 @@ if(isset($_POST['update'])){
 
 }
 
-?>
+ include('scripts.php');?>
 
-<script>
-function deleteconfig(){
-
-var del=confirm("Are you sure you want to delete this user?");
-if (del==true){
-   alert ("User deleted!")
-}else{
-    alert("No user were affected.")
-}
-return del;
-}
-</script>
-
-<title>User Management <?php echo $g_title; ?></title>
+<title>User Management | <?php echo $comp_name; ?></title>
 
 
 <h2>User Management</h2>
@@ -162,9 +141,19 @@ return del;
 	<label for="branch">Branch:</label>
     <input type="text" name="branch" class="form-control"  value="<?php echo $db_branch ?? null; ?>">
 	<label for="type">Type:</label>
-    <input type="text" name="type" class="form-control"  value="emp" value="<?php echo $db_type; ?>">
+    <input type="text" name="type" class="form-control"   value="<?php echo $db_type ?? null; ?>">
 	<label for="date_enrolled">Date/Time Enrolled:</label>
     <input type="text" name="date_enrolled" class="form-control"  value="<?php echo $db_date_enrolled ?? null; ?>" readonly>
+
+
+
+    <select name="type" id="type">
+  <option value=""></option>
+  <option value="admin">Admin</option>
+  <option value="user">User</option>
+</select>
+
+
     <input type="submit" name="add" class="btn btn-success mb-2" value="Add">&nbsp;<input type="submit" name="update" class="btn btn-success mb-2" value="Edit/Update">&nbsp;<input type="submit" name="delete" class="btn btn-success mb-2" value="Delete" onclick="return deleteconfig()">
     
     </form>

@@ -3,17 +3,9 @@ error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
 include("global_variables.php");
+include("verify_if_admin.php");
 
-//redirect to login if no variable set for empid and not admin beg
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}else{
-    if($g_type != "admin"){
-       
-        header("location: index.php");
-    }
-}
-//redirect to login if no variable set for empid and not admin end
+
 
 $txn_no = $_POST['txn_no'] ?? null;
 
@@ -51,18 +43,7 @@ if(isset($_POST['delete'])){
 
 ?>
 
-<script>
-function deleteconfig(){
-
-var del=confirm("Are you sure you want to delete this user?");
-if (del==true){
-   alert ("User deleted!")
-}else{
-    alert("No user were affected.")
-}
-return del;
-}
-</script>
+<?php include ('scripts.php');?>
 
 <title>Delete Single Transaction <?php echo $g_title; ?></title>
 

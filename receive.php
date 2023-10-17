@@ -3,11 +3,8 @@ error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
 include("global_variables.php");
+include("verify_login.php");
 
-//redirect to login if no variable set for empid
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}
 
 $txn_no = "";
 
@@ -84,7 +81,7 @@ if(isset($_POST['receive'])){
 <h2>Receive</h2>
 <div class="form">
 
-<form method="POST" action="receive.php">
+<form method="POST" action="receive.php" >
 <div class="input-group mb-3">
 <input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
 <div class="input-group-append">
@@ -143,7 +140,7 @@ if(isset($_POST['receive'])){
     <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by  ?? null; ?>"  readonly>
     <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent  ?? null; ?>"  readonly>
   </div>
-  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release">
+  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
 </form>
 
 <form method="POST" action="claimreceipt.php">

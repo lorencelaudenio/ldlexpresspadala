@@ -3,11 +3,8 @@ ob_start();//important para no header error
 include('conn.php');
 include('global_variables.php');
 include('headers.php');
+include('verify_login.php');
 
-//redirect to login if no variable set for empid
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}
 ?>
 <nav class="container bg-secondary text-white navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="rounded" style="width:40px;"></a>

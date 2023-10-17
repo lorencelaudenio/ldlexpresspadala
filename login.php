@@ -1,16 +1,23 @@
 <?php
 error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
-include("conn.php");
-include("global_variables.php");
-
-
-//include("headers.php"); wag na maglagay conflict
-
+session_start();
 
 $username = $password = "";
 
 $username = $_POST['username']  ?? null;
 $password = $_POST['password']  ?? null;
+
+
+include("conn.php");
+include("global_variables.php");
+
+
+
+
+//include("headers.php"); wag na maglagay conflict
+
+
+
 
 if(isset($_POST['login'])){
 		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username' AND password = '$password' ");
@@ -32,26 +39,21 @@ if(isset($_POST['login'])){
 			echo "<script>alert('Username or password was incorrect. Please try again.')</script>";
 		}
 }
+
+include("headers.php");
 ?>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-<link rel="icon" href="img/logo.png" type="image/x-icon">
+
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Login | LDL Express Padala</title>
+<title>Login | <?php echo $comp_name;?></title>
 
 
 
 <!--<div class="container p-5 my-5 bg-primary text-white col-md-4 shadow">-->
 <div class="container shadow p-3 mb-5 bg-white rounded col-md-4">
 <center><img class="loginlogo" src="img/logo.png"/></center>
-<b><center><small><font color="#e60000">LDL Padala Express Login</font></small></center></b>
+<b><center><small><font color="#e60000"><?php echo $comp_name;?> Login</font></small></center></b>
 
 <form method="POST" action="login.php">
 <div class="form-group">

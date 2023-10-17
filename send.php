@@ -3,11 +3,8 @@ error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
 include("global_variables.php");
+include("verify_login.php");
 
-//redirect to login if no variable set for empid
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}
 
 $txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
 
@@ -62,7 +59,7 @@ function getdestcode(){
 <title>Send<?php echo $g_title; ?></title>
 <h2>Send</h2>
 
-<form method="POST" action="send.php">
+<form method="POST" action="send.php" onsubmit="return confirm('Are you sure data are correct?');">
 
 
 <div class="container p-3 my-3 border">
@@ -120,7 +117,7 @@ function getdestcode(){
 	</div>
 	
 </div>
-<input type="submit" class="btn btn-success mb-2" name="send" value="Send">
+<input type="submit" class="btn btn-success mb-2" name="send" value="Send" >
 
 
 </form>

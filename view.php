@@ -6,10 +6,7 @@ include("global_variables.php");
 
 $count = 0;
 
-//redirect to login if no variable set for empid
-if(!isset($g_username) || empty($g_username)){
-	header("location: login.php");
-}
+include("verify_login.php");
 
 
 //conditions beg
@@ -76,8 +73,7 @@ if(!empty($sql)){
 
  }
 
-
-
+ 
 }
 
 
