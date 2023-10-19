@@ -10,6 +10,7 @@ $password = $_POST['password']  ?? null;
 
 include("conn.php");
 include("global_variables.php");
+include("scripts.php");
 
 
 
@@ -20,7 +21,8 @@ include("global_variables.php");
 
 
 if(isset($_POST['login'])){
-		$query = mysqli_query($conn,"SELECT * FROM tbl_users WHERE username = '$username' AND password = '$password' ");
+		include("sql.php");
+		$query = mysqli_query($conn, $loginsql);
 
         
 
@@ -63,6 +65,7 @@ include("headers.php");
 <div class="form-group">
 <label for="password">Password:</label>
 <input type="password" name="password" class="form-control" placeholder="Enter Password" required><br>
+<i class="fa fa-eye toggle icon"></i>
 <input type="submit" name="login" value="Login" class="btn btn-success">
 </form>
 </div>

@@ -9,6 +9,7 @@ $compAdd = $_POST['comp_add'] ?? null;
 $compContact = $_POST['comp_contact'] ?? null;
 $compTagline = $_POST['comp_tagline'] ?? null;
 $compNotice = $_POST['comp_notice'] ?? null;
+$Interest = $_POST['interest'] ?? null;
 //variables end
 
 
@@ -55,6 +56,7 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
             $db_comp_contact = $row['compContact'];
             $db_comp_tagline = $row['compTagline'];
             $db_comp_notice = $row['notice'];
+            $db_interest = $row['interest'];
 		   
 
             }
@@ -79,6 +81,8 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
         <input type="text"  class="form-control" name="comp_tagline" value="<?php echo $db_comp_tagline ?? null; ?>" >
         <label for="notice">Notice:</label>
         <input type="text"  class="form-control" name="comp_notice" value="<?php echo $db_comp_notice ?? null; ?>" >
+        <label for="notice">Interest:</label>
+        <input type="text"  class="form-control" name="interest" value="<?php echo $db_interest ?? null; ?>" >
         <input type="submit" name="save_config" class="btn btn-success mb-2" value="Save Config" onclick="return confirm_save()">
     </form>
 </div>

@@ -131,6 +131,8 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
   if($ito_dapat ?? null){//important ito to fix mysqli_fetch_assoc() expects parameter 1 to be
   while($row = mysqli_fetch_assoc($ito_dapat ?? null)) {
 
+    include("functions.php");
+
   $db_txn_no = $row["txn_no"];
   $db_amt = $row["amt"];
       $db_sender = $row["sender"];
@@ -139,7 +141,7 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       $db_processed_by = $row["processed_by"];
       $db_status = $row["status"];
   echo "<tr>
-  <td>$db_txn_no</td>
+  <td id='txn'>$db_txn_no <i class='bi bi-copy' onclick='copyTXN()'></i></td>
   <td>$db_amt</td>
       <td>$db_sender</td>
   <td>$db_receiver</td>

@@ -51,7 +51,7 @@ if(isset($_POST['search'])){
 
 
 <!--<link rel="stylesheet" type="text/css" href="style.css">-->
-<title>Track<?php echo $g_title; ?></title>
+<title>Track<?php echo $comp_name; ?></title>
 
 <h2>Track</h2>
 <form method="POST" action="index.php" class="was-validated">

@@ -56,7 +56,7 @@ function getdestcode(){
 }
 </script>
 
-<title>Send<?php echo $g_title; ?></title>
+<title>Send | <?php echo $comp_name; ?></title>
 <h2>Send</h2>
 
 <form method="POST" action="send.php" onsubmit="return confirm('Are you sure data are correct?');">

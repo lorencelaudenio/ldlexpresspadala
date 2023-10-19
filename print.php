@@ -19,7 +19,7 @@ $d_address = $_SESSION['s_address'];
 $d_date_time = $_SESSION['s_date_time'];
 $d_logged_info = $_SESSION['s_logged_info'];
 $d_contactinfo = $_SESSION['s_contactinfo'];
-$d_logo = $_SESSION['s_logo'];
+// $d_logo = $_SESSION['s_logo'];
 
 
 

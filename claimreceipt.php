@@ -1,5 +1,6 @@
 <?php
 require("fpdf182_2/fpdf.php");
+require("conn.php");
 session_start();
 $new_x_txn_no = $_SESSION['r_txn_no'];
 //$x_date_time = $_SESSION['r_date_time'];
@@ -27,7 +28,7 @@ $x_logo = $_SESSION['r_logo'];
     $pdf->SetFont('Arial','',7);
     $pdf->SetX(50);    
     $pdf->Cell(40,5,'',0,1);
-    $pdf->Image($x_logo,40,6,20);
+    $pdf->Image($logo,40,6,20);
     $pdf->SetX(38);
     $pdf->Cell(40,0,$x_title,0,1);
     $pdf->SetX(39);

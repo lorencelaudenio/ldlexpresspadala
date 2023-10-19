@@ -77,7 +77,7 @@ if(isset($_POST['receive'])){
 ?>
 
 
-<title>Receive<?php echo $g_title; ?></title>
+<title>Receive | <?php echo $comp_name; ?></title>
 <h2>Receive</h2>
 <div class="form">
 

@@ -2,6 +2,7 @@
 // Create connection
 //$conn = new mysqli("localhost","root","","db_ldlpadalaexpress");
 $conn = new mysqli("localhost","root","","id13211271_db_ldlexpress");
+// $conn = new mysqli("sql104.infinityfree.com","if0_34821151","xZRvdH06Ds","if0_34821151_db");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -21,12 +22,14 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			global $comp_contact;
 			global $comp_tagline;
 			global $notice;
+			global $fees;
 		    $logo = $row['logo'] ?? null;
 		    $comp_name = $row['compName'] ?? null;
             $comp_add = $row['compAdd'] ?? null;
             $comp_contact = $row['compContact'] ?? null;
             $comp_tagline = $row['compTagline'] ?? null;
             $notice = $row['notice'] ?? null;
+			$fees = 0.02;
 		   
 
             }

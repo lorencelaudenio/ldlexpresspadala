@@ -1,6 +1,7 @@
 <?php 
 include("global_variables.php");
 include("headers.php");
+require("conn.php");
 ?>
 <div class="container">
 <footer class="page-footer font-small blue">
