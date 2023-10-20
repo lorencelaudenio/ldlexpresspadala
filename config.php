@@ -10,6 +10,7 @@ $compContact = $_POST['comp_contact'] ?? null;
 $compTagline = $_POST['comp_tagline'] ?? null;
 $compNotice = $_POST['comp_notice'] ?? null;
 $Interest = $_POST['interest'] ?? null;
+$email = $_POST['email'] ?? null;
 //variables end
 
 
@@ -26,7 +27,7 @@ include("verify_if_admin.php");
 
 //save config beg
 if(isset($_POST['save_config'])){
-    $updateconfig= mysqli_query($conn,"UPDATE config SET logo='$logo', compName='$compName', compAdd='$compAdd', compContact='$compContact', compTagline='$compTagline', notice='$compNotice', interest='$Interest' WHERE config = 'config'");
+    $updateconfig= mysqli_query($conn,"UPDATE config SET logo='$logo', compName='$compName', compAdd='$compAdd', compContact='$compContact', compTagline='$compTagline', notice='$compNotice', interest='$Interest', email='$email' WHERE config = 'config'");
 
     $image=$_FILES['image']['name']; 
      //$imageArr=explode('.',$image); //first index is file name and second index file type
@@ -57,6 +58,7 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
             $db_comp_tagline = $row['compTagline'];
             $db_comp_notice = $row['notice'];
             $db_interest = $row['interest'];
+            $db_email = $row['email'];
 		   
 
             }
@@ -83,6 +85,8 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
         <input type="text"  class="form-control" name="comp_notice" value="<?php echo $db_comp_notice ?? null; ?>" >
         <label for="notice">Interest:</label>
         <input type="text"  class="form-control" name="interest" value="<?php echo $db_interest ?? null; ?>" >
+        <label for="email">Email:</label>
+        <input type="text"  class="form-control" name="email" value="<?php echo $db_email ?? null; ?>" >
         <input type="submit" name="save_config" class="btn btn-success mb-2" value="Save Config" onclick="return confirm_save()">
     </form>
 </div>

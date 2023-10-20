@@ -25,6 +25,7 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			global $interest;
 			global $g_compAdd;
 			global $g_compContact;
+			global $g_email;
 		    $logo = $row['logo'] ?? null;
 		    $comp_name = $row['compName'] ?? null;
             $comp_add = $row['compAdd'] ?? null;
@@ -34,6 +35,7 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			$interest = $row['interest'] ?? null;
 			$g_compAdd = $row['compAdd'] ?? null;
 			$g_compContact = $row['compContact'] ?? null;
+			$g_email = $row['email'] ?? null;
 		   
 
             }

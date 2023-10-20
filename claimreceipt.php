@@ -35,6 +35,8 @@ $x_logo = $_SESSION['r_logo'];
     $pdf->Cell(0,10,'Address:'.$g_compAdd,0,0,'C');
     $pdf->Ln(3);
     $pdf->Cell(0,10,'Contact: '.$g_compContact,0,0,'C');
+    $pdf->Ln(3);
+    $pdf->Cell(0,10,'Email: '.$g_email,0,0,'C');
     $pdf->Ln(10);
     $pdf->Cell(0,10,'RECEIVE MONEY FORM',0,0,'C');
     $pdf->Ln(5);

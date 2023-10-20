@@ -2,11 +2,11 @@
     /*delete record*/
 function deleterecs(){
 
-var del=confirm("Are you sure you want to delete this user?");
+var del=confirm("Are you sure you want to all transactions?");
 if (del==true){
-   alert ("User deleted!")
+   alert ("All transactions are deleted!")
 }else{
-    alert("No user were affected.")
+    alert("No transactions were affected.")
 }
 return del;
 }

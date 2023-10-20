@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2023 at 07:22 AM
+-- Generation Time: Oct 20, 2023 at 11:26 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -48,15 +48,16 @@ CREATE TABLE `config` (
   `compContact` varchar(256) NOT NULL,
   `compTagline` varchar(256) NOT NULL,
   `notice` varchar(256) NOT NULL,
-  `interest` decimal(3,2) NOT NULL
+  `interest` decimal(3,2) NOT NULL,
+  `email` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `config`
 --
 
-INSERT INTO `config` (`id`, `config`, `logo`, `compName`, `compAdd`, `compContact`, `compTagline`, `notice`, `interest`) VALUES
-(1, 'config', 'img/logo.png', 'LDL Express Padalaaa', 'Makati', '09272053904', 'Walang kuskos Balungos', 'PAALALA: Wag makipagtransact sa hindi kakilala.', 0.05);
+INSERT INTO `config` (`id`, `config`, `logo`, `compName`, `compAdd`, `compContact`, `compTagline`, `notice`, `interest`, `email`) VALUES
+(1, 'config', 'img/logo.png', 'Remit Easy Philippines', 'Makati', '09272053904', 'Seamless Remittances, Happy Recipients.', 'PAALALA: Wag makipagtransact sa hindi kakilala.', 0.05, 'cust@pinoypaypro.com');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,16 @@ INSERT INTO `tbl_ldlpadalaexpress` (`id_no`, `txn_no`, `status`, `amt`, `sender`
 (6, 'SIG-102023051218-MAK', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdfd', 'Allowance', '2023-10-20 05:12:18', '2023-10-20 05:12:37', 'admin - sigma', 'admin - sigma'),
 (7, 'SIG-102023051953-MAK', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'Admin', 'Deposit', '2023-10-20 05:19:53', '2023-10-20 05:20:05', 'admin - sigma', 'admin - sigma'),
 (8, 'SIG-102023070445-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdfd', 'Deposit', '2023-10-20 07:04:45', '', 'admin - sigma', ''),
-(9, 'SIG-102023071855-MAK', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdf', 'Deposit', '2023-10-20 07:18:55', '2023-10-20 07:20:36', 'admin - sigma', 'admin - sigma');
+(9, 'SIG-102023071855-MAK', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdf', 'Deposit', '2023-10-20 07:18:55', '2023-10-20 07:20:36', 'admin - sigma', 'admin - sigma'),
+(10, 'SIG-102023095700-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdfd', 'Deposit', '2023-10-20 09:57:00', '', 'admin - sigma', ''),
+(11, 'SIG-102023100709-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'Mother', 'Deposit', '2023-10-20 10:07:09', '', 'admin - sigma', ''),
+(12, 'SIG-102023105226-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfd', 'Deposit', '2023-10-20 10:52:26', '', 'admin - sigma', ''),
+(13, 'SIG-102023105318-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'gfgf', 'Deposit', '2023-10-20 10:53:18', '', 'admin - sigma', ''),
+(14, 'SIG-102023105437-MAK', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'gfgf', 'Deposit', '2023-10-20 10:54:37', '', 'admin - sigma', ''),
+(15, 'LEP102023105626', 'Unclaim', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdf', 'Deposit', '2023-10-20 10:56:26', '', 'admin - sigma', ''),
+(16, 'REP102023110108', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'gfgf', 'Deposit', '2023-10-20 11:01:08', '2023-10-20 11:23:28', 'admin - sigma', 'admin - sigma'),
+(17, 'REP102023110306', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdfd', 'Deposit', '2023-10-20 11:03:06', '2023-10-20 11:07:36', 'admin - sigma', 'admin - sigma'),
+(18, 'REP102023110416', 'Claimed', '1000', 'Rhose Foronda', '09123456789', 'Makati', 'Yoko Matsunami', '09123456789', 'fdfdf', 'Deposit', '2023-10-20 11:04:16', '2023-10-20 11:04:45', 'admin - sigma', 'admin - sigma');
 
 -- --------------------------------------------------------
 
@@ -189,7 +199,7 @@ ALTER TABLE `online`
 -- AUTO_INCREMENT for table `tbl_ldlpadalaexpress`
 --
 ALTER TABLE `tbl_ldlpadalaexpress`
-  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

@@ -39,6 +39,8 @@ $d_contactinfo = $_SESSION['s_contactinfo'];
     $pdf->Cell(0,10,'Address: '.$comp_add,0,0,'C');
     $pdf->Ln(3);
     $pdf->Cell(0,10,'Contact: '.$comp_contact,0,0,'C');
+    $pdf->Ln(3);
+    $pdf->Cell(0,10,'Email: '.$g_email,0,0,'C');
     $pdf->Ln(7);
     $pdf->Cell(0,10,'SEND MONEY FORM',0,0,'C');
     $pdf->Ln(5);
