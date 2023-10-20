@@ -7,7 +7,7 @@ include('verify_login.php');
 
 ?>
 <nav class="container bg-secondary text-white navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" href="index.php"><img src="img/logo.png" class="rounded" style="width:40px;"></a>
+  <a class="navbar-brand" href="index.php"><img src="<?php echo $logo;?>" class="rounded-circle" style="width:40px;"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
     <span class="navbar-toggler-icon"></span>
   </button>
