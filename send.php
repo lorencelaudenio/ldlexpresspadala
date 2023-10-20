@@ -5,6 +5,15 @@ include("nav.php");
 include("global_variables.php");
 include("verify_login.php");
 
+$string = $comp_name;
+
+function initials($str) {
+    $ret = '';
+    foreach (explode(' ', $str) as $word)
+        $ret .= strtoupper($word[0]);
+    return $ret;
+}
+
 
 $txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
 
@@ -27,16 +36,16 @@ $processed_by=$g_logged_info;
 $released_by=$_POST['released_by'] ?? null;
 echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
-    $supernew_txn_code = $new_txn_code;
-    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$supernew_txn_code', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
+    $txn_numbah = initials($string).date("mdyhis");
+    $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$txn_numbah', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
 
     //echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
-    echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $supernew_txn_code. '</a></b>!
+    echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $txn_numbah . '</a></b>!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true" style="font-size:20px">×</span>
   </button>
 	  </div></center>';
-    $_SESSION['s_txn_no'] = $txn_no;
+    $_SESSION['s_txn_no'] = $txn_numbah;
 }
 
  
@@ -44,6 +53,10 @@ if(isset($_POST['send'])){
 
 <?php
 include("scripts.php");
+
+
+
+// echo initials($string); // would output "PIVS"
 ?>
 
 
@@ -116,7 +129,7 @@ include("scripts.php");
 <form method="POST" action="print.php">
 <?php
 session_start();
-$p_txn_no=$supernew_txn_code ?? null;
+$p_txn_no=$txn_numbah ?? null;
 $_SESSION['s_txn_no'] = $p_txn_no;
 $_SESSION['s_sender'] = ucfirst($sender);
 $_SESSION['s_sender_cp_no']=$sender_cp_no;
