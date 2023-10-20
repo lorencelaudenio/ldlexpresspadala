@@ -26,7 +26,7 @@ include("verify_if_admin.php");
 
 //save config beg
 if(isset($_POST['save_config'])){
-    $updateconfig= mysqli_query($conn,"UPDATE config SET logo='$logo', compName='$compName', compAdd='$compAdd', compContact='$compContact', compTagline='$compTagline', notice='$compNotice' WHERE config = 'config'");
+    $updateconfig= mysqli_query($conn,"UPDATE config SET logo='$logo', compName='$compName', compAdd='$compAdd', compContact='$compContact', compTagline='$compTagline', notice='$compNotice', interest='$Interest' WHERE config = 'config'");
 
     $image=$_FILES['image']['name']; 
      //$imageArr=explode('.',$image); //first index is file name and second index file type

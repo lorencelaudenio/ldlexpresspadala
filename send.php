@@ -42,19 +42,10 @@ if(isset($_POST['send'])){
  
 ?>
 
-<script>
-function getfee(){	
-	//document.getElementById("fee").value = Number(document.getElementById("amt").value) * 0.02;
-    document.getElementById("fee").value = Number(document.getElementById("amt").value) * <?php echo json_encode($g_fees); ?>;
-	document.getElementById("total").value = Number(document.getElementById("amt").value) + Number(document.getElementById("fee").value);
-}
+<?php
+include("scripts.php");
+?>
 
-function getdestcode(){	
-	var str = document.getElementById('dest').value;
-    var res = str.substring(0,3);
-    document.getElementById('destcode').value = res.toUpperCase();
-}
-</script>
 
 <title>Send | <?php echo $comp_name; ?></title>
 <h2>Send</h2>

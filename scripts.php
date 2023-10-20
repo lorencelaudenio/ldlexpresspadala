@@ -53,5 +53,18 @@ return save;
         input.type = "password";
       }
     })
+
+
+    function getfee(){	
+	//document.getElementById("fee").value = Number(document.getElementById("amt").value) * 0.02;
+    document.getElementById("fee").value = Number(document.getElementById("amt").value) * <?php echo json_encode($interest); ?>;
+	document.getElementById("total").value = Number(document.getElementById("amt").value) + Number(document.getElementById("fee").value);
+}
+
+function getdestcode(){	
+	var str = document.getElementById('dest').value;
+    var res = str.substring(0,3);
+    document.getElementById('destcode').value = res.toUpperCase();
+}
   </script>
 

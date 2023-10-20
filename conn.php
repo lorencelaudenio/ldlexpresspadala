@@ -22,14 +22,18 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			global $comp_contact;
 			global $comp_tagline;
 			global $notice;
-			global $fees;
+			global $interest;
+			global $g_compAdd;
+			global $g_compContact;
 		    $logo = $row['logo'] ?? null;
 		    $comp_name = $row['compName'] ?? null;
             $comp_add = $row['compAdd'] ?? null;
             $comp_contact = $row['compContact'] ?? null;
             $comp_tagline = $row['compTagline'] ?? null;
             $notice = $row['notice'] ?? null;
-			$fees = 0.02;
+			$interest = $row['interest'] ?? null;
+			$g_compAdd = $row['compAdd'] ?? null;
+			$g_compContact = $row['compContact'] ?? null;
 		   
 
             }
