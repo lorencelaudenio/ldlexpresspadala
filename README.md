@@ -20,6 +20,7 @@ Try It Out
 To experience LDL Express Padala, log in with the following credentials:
 
 User: guest
+
 Password: guest
 
 Start simplifying your money remittance and transaction management today with LDL Express Padala.
