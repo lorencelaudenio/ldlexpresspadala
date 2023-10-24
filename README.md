@@ -1,23 +1,24 @@
-# ldlexpresspadala
-LDL ExpressPadala Features:
+LDL Express Padala
+LDL Express Padala is a straightforward and user-friendly simulation for handling Send/Receive Money transactions and money remittance. Whether you're running a small remittance business or simply want to practice managing these transactions, LDL Express Padala has you covered.
 
-1. Transaction Code Generation: When a user initiates a money sending transaction, LDL ExpressPadala generates a unique transaction code as a reference for the transaction.
+Key Features
+User-Friendly Interface: Our platform is designed with simplicity in mind, making it easy for anyone to use, regardless of their experience with such transactions.
 
-2. Transaction Validation: Transactions are validated using the transaction code. Only when the provided code matches the code associated with a specific transaction can that transaction be released.
+- Transaction Number Generation: When sending money, you can generate unique transaction numbers, providing a structured and organized way to track and manage your remittance records.
 
-3. Admin and User Privileges: The system supports two user roles: Admin and User. Only Admins have the authority to add new users to the system. Regular Users can send and receive money but cannot add new users.
+- Receive Money: Seamlessly receive money on the platform, keeping everything in one place for easy access and reference.
 
-4. Transaction Deletion (Admin Only): In Admin mode, administrators can delete specific transactions. This action effectively removes the transaction from the transaction database, maintaining data integrity.
+- PDF Receipts: Create professional and printable receipts in PDF format, complete with all transaction details, for your records or to provide to your customers.
 
-5. Auto-Calculation of Fees: The system automatically calculates a transaction fee of 2% based on the transaction amount, ensuring transparency in fees for users.
+- Customization: Personalize the system to match your business branding with options to configure your company logo, name, contact information, address, and more.
 
-6. Receipt Printing: After a successful transaction, the system generates a receipt that includes transaction details, fees, and a transaction ID. Users have the option to print the receipt for their records.
+Website
+Visit the demo website at https://ldlexpresspadala.000.pe
 
-7. Receipt Storage: Copies of receipts are saved on the server for easy retrieval. Users can access their transaction history and download receipts whenever needed.
+Try It Out
+To experience LDL Express Padala, log in with the following credentials:
 
+User: guest
+Password: guest
 
-Demo site: https://ldlexpresspadala.000.pe/
-username: guest 
-password: guest
-
-Requirements: fpdf - Source: http://www.fpdf.org/en/download.php this file is needed for creation of receipt in pdf format
+Start simplifying your money remittance and transaction management today with LDL Express Padala.
