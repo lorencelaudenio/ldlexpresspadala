@@ -16,6 +16,8 @@ function copyToClipboard(txt) {
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+
+  alert("Transaction number copied: " + el.value);
 }
 </script>
 
