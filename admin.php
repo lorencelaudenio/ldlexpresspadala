@@ -29,7 +29,7 @@ if(isset($_POST['deleteall'])){
 		<a class="btn btn-success mb-2" href="adduser.php">User Management</a><br>
 		<a class="btn btn-success mb-2" href="deletesingletxn.php">Delete Single Transaction</a><br>
 		<a class="btn btn-success mb-2" href="config.php">Configuration</a><br>
-		<input class="btn btn-success mb-2" type="submit" name="deleteall" value="Delete All Transactions" onclick="return deleteconfig()">
+		<input class="btn btn-success mb-2" type="submit" name="deleteall" value="Delete All Transactions" onclick="return deleteallrecords()">
     </form>
     </div>
 </div>

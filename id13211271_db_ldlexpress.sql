@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 12:40 PM
+-- Generation Time: Oct 24, 2023 at 05:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -50,15 +50,17 @@ CREATE TABLE `config` (
   `notice` varchar(256) NOT NULL,
   `interest` decimal(3,2) NOT NULL,
   `email` varchar(256) NOT NULL,
-  `fb` varchar(256) NOT NULL
+  `fb` varchar(256) NOT NULL,
+  `mission` varchar(999) NOT NULL,
+  `vision` varchar(999) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `config`
 --
 
-INSERT INTO `config` (`id`, `config`, `logo`, `compName`, `compAdd`, `compContact`, `compTagline`, `notice`, `interest`, `email`, `fb`) VALUES
-(1, 'config', 'img/logo.png', 'Remit Easy Philippines', 'Makati', '09272053904', 'Seamless Remittances, Happy Recipients.', 'PAALALA: Wag makipagtransact sa hindi kakilala.', 0.05, 'cust@pinoypaypro.com', 'https://facebook.com/remiteasyphilippines');
+INSERT INTO `config` (`id`, `config`, `logo`, `compName`, `compAdd`, `compContact`, `compTagline`, `notice`, `interest`, `email`, `fb`, `mission`, `vision`) VALUES
+(1, 'config', 'img/logo.png', 'Remit Easy Philippines', 'Makati', '09272053904', 'Seamless Remittances, Happy Recipients.', 'PAALALA: Wag makipagtransact sa hindi kakilala.', 0.05, 'cust@pinoypaypro.com', 'https://facebook.com/remiteasyphilippines', 'Our mission is to empower individuals and businesses with a user-friendly platform for managing Send/Receive Money transactions and money remittance. We are committed to providing accessible, efficient, and customizable solutions that simplify financial transactions, fostering financial inclusion, and enhancing the customer experience.', 'Our vision is to become a trusted and leading provider of financial transaction management solutions. We aspire to continually innovate, adapting to the evolving needs of our users and the financial industry. We aim to be the go-to platform for anyone seeking a secure, user-friendly, and customizable way to handle money remittance and transaction management, making financial transactions seamless and accessible for all.');
 
 -- --------------------------------------------------------
 

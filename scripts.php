@@ -14,13 +14,13 @@ return del;
 
 <script>
     /*delete config*/
-function deleteconfig(){
+function deleteallrecords(){
 
-var del=confirm("Are you sure you want to delete this user?");
+var del=confirm("Are you sure you want to delete all records?");
 if (del==true){
-   alert ("User deleted!")
+   alert ("All records are deleted!")
 }else{
-    alert("No user were affected.")
+    alert("No records were affected.")
 }
 return del;
 }
