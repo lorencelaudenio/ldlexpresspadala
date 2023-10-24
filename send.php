@@ -75,7 +75,7 @@ include("scripts.php");
 	<div class="input-group-prepend">
       <span class="input-group-text">Mobile No.:</span>
     </div>
-    <input type="text" class="form-control" name="sender_cp_no" value="<?php echo $sender_cp_no; ?>"required>
+    <input type="text"  class="form-control" name="sender_cp_no" value="<?php echo $sender_cp_no; ?>"required>
   </div>
 	<div class="input-group mb-3">
     <div class="input-group-prepend">

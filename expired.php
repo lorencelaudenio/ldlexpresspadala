@@ -5,7 +5,7 @@ include("conn.php");
 ?>
 <title>Session Expired | <?php echo $comp_name;?></title>
 <div class="container text-center pt-3">
-    <img class="img-fluid" src="img/logo.png"  style="width:10%;">
+    <img class="img-fluid rounded-circle" src="<?php echo $logo;?>"  style="width:10%;">
 </div>
 
 <div class="container ">

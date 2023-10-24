@@ -132,6 +132,7 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
   while($row = mysqli_fetch_assoc($ito_dapat ?? null)) {
 
     include("functions.php");
+    include("scripts.php");
 
   $db_txn_no = $row["txn_no"];
   $db_amt = $row["amt"];
@@ -141,7 +142,7 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       $db_processed_by = $row["processed_by"];
       $db_status = $row["status"];
   echo "<tr>
-  <td id='txn'>$db_txn_no <i class='bi bi-copy' onclick='copyTXN()'></i></td>
+  <td id='txn'>$db_txn_no <i class='bi bi-copy ' title='Copy Ref. Number' onclick='CopyMyLeftTd(this)'></i></td>
   <td>$db_amt</td>
       <td>$db_sender</td>
   <td>$db_receiver</td>
@@ -168,6 +169,6 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
 
 
 
-<title>View <?php echo $g_title; ?></title>
+<title>View | <?php echo $comp_name; ?></title>
 
 <?php include ('footer.php');?>

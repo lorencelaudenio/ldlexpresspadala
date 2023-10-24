@@ -45,7 +45,7 @@ if(isset($_POST['delete'])){
 
 <?php include ('scripts.php');?>
 
-<title>Delete Single Transaction <?php echo $g_title; ?></title>
+<title>Delete Single Transaction | <?php echo $comp_name; ?></title>
 
 
 <h2>Delete Single Transaction</h2>
