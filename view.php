@@ -87,20 +87,20 @@ echo '<div class="container p-3 bg-primary text-white">
 <div class="container p-3 my-3 border">
 <form class="form-inline" method="POST" action="view.php">
 <label for="from" class="mr-sm-2">From:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  name="from_date" id="from_date">
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_from_date.'" name="from_date" id="from_date">
 <label for="to" class="mr-sm-2">To:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  name="to_date" id="to_date">
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_to_date.'" name="to_date" id="to_date">
  
 
 
 <label for="status" class="mr-sm-2">Status:</label>
-<select name="status" id="statusa" value="" class="form-control mb-2 mr-sm-2">
+<select name="status" id="statusa" value="'.$status.'" class="form-control mb-2 mr-sm-2">
     <option name="status" value=""></option>
     <option name="status" value="Claimed">Claimed</option>
     <option name="status" value="Unclaim">Unclaim</option>
 </select>&nbsp;' ?? null;
 
-if($g_type == "admin"){echo "User:&nbsp;<select class='form-control mb-2 mr-sm-2' name='usr' class='inputtextsearch'><option></option>";}
+if($g_type == "admin"){echo "User:&nbsp;<select class='form-control mb-2 mr-sm-2' name='usr' value='".$usr."' class='inputtextsearch'><option></option>";}
 
 $populate_users = mysqli_query($conn,"SELECT * from tbl_users WHERE username<>'admin'");
 while ($row = mysqli_fetch_array($populate_users)) {
