@@ -1,14 +1,23 @@
 <script>
-    function copyTXN() {
-        var copyText = document.getElementById("txn");
+  function CopyMyLeftTd(e) {
+var leftTdIndex= $(e).parent().index()-0;
+var leftTd= $(e).closest("tr").find("td:eq(" + leftTdIndex + ")");
+copyToClipboard($(leftTd).text());
+}
 
-        
-
-/* Copy the text inside the text field */
-document.execCommand("copy");
-
-/* Alert the copied text */
-alert("Copied the text: " + copyText.value);
+function copyToClipboard(txt) {
+ var el = document.createElement('textarea');
+ 
+  el.value = txt;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
 }
 </script>
+
+
 
