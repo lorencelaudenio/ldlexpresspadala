@@ -27,6 +27,8 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			global $g_compContact;
 			global $g_email;
 			global $g_fb;
+			global $g_mission;
+			global $g_vision;
 		    $logo = $row['logo'] ?? null;
 		    $comp_name = $row['compName'] ?? null;
             $comp_add = $row['compAdd'] ?? null;
@@ -38,7 +40,8 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			$g_compContact = $row['compContact'] ?? null;
 			$g_email = $row['email'] ?? null;
 			$g_fb = $row['fb'] ?? null;
-		   
+			$g_mission = $row['mission'] ?? null;
+			$g_vision = $row['vision'] ?? null;
 
             }
 		}

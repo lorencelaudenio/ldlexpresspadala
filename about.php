@@ -35,17 +35,8 @@ include("verify_login.php");
     <div class="carousel-item active">
       <img src="img/happy-family.jpg" width="1100" height="500">
 	  <div class="carousel-caption">
-		<h3 class="text-dark">Vision & Mission</h3>
-		<p class="text-dark text-justify"><?php echo $comp_name;?>'s vision is to transform the lives of filipino families by providing the most trusted financial remittance across the planet. Focus has always been a key part of our strategy and our initial laser focus is on transforming the global remittance industry. Over time, we will leverage our trusted financial services brand and our global network to extend into other financial services.
-
-</p>
-
-		<p class="text-dark text-justify">
-		We, Team <?php echo $comp_name;?>, are united through our mission - to tirelessly deliver on our promise to filipinos sending money across the world.
-		</p>
-		<p class="text-dark text-justify">
-		We accomplish our vision and mission by relentlessly focusing on culture. We’ve created <?php echo $comp_name;?>’s Cultural Values, which embody how an exemplary <?php echo $comp_name;?> team member and the overall <?php echo $comp_name;?> team works to deliver on promises to customers everyday. That starts with putting customers at the center of everything we do.
-		</p>
+		<h3 class="text-dark">Mission</h3>
+		<p class="text-dark text-justify"><?php echo $g_mission;?></p>
 	  </div>
     </div>
     <div class="carousel-item">
@@ -53,8 +44,8 @@ include("verify_login.php");
 	<div class="carousel-caption">
       
 	  <p >
-		<h1 class="text-dark">Our Vision, Mission, and Values</h1>
-						<h2 class="text-dark">We're passionate about what we do – impacting lives across continents</h2>
+		<h3 class="text-dark">Vision</h3>
+			<p class="text-dark text-justify"><?php echo $g_vision;?></p>
 	  </p>
 	</div>
     </div>

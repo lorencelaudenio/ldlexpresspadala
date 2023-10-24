@@ -53,7 +53,7 @@ if(isset($_POST['search'])){
 <!--<link rel="stylesheet" type="text/css" href="style.css">-->
 <title>Track | <?php echo $comp_name; ?></title>
 
-<h2>Tracka</h2>
+<h2>Track</h2>
 <form method="POST" action="index.php" class="was-validated">
 <div class="input-group mb-3">
 <input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
