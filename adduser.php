@@ -134,7 +134,7 @@ if(isset($_POST['update'])){
     <div class="input-group-prepend">
       <span class="input-group-text">Password:</span>
     </div>
-    <input type="password" name="password" class="form-control"  value="<?php echo $db_password ?? null; ?>">
+    <input type="password" name="password" class="form-control"  value="<?php echo md5($db_password) ?? null; ?>">
 	<div class="input-group-prepend">
       <span class="input-group-text">Confirm:</span>
     </div>
