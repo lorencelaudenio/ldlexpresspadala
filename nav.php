@@ -33,7 +33,7 @@ include('verify_login.php');
         <a class="nav-link" href="about.php">About</a>
       </li>
     </ul>
-      <a href="logout.php" class="btn btn-danger my-2 my-sm-0"><i class="bi bi-power">Logout</a>
+      <a href="logout.php" class="btn btn-danger my-2 my-sm-0"><i class="bi bi-power"></i> Logout</a>
     </form>
   </div>
 </nav>
