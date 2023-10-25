@@ -12,7 +12,7 @@ $cpassword = $_POST['cpassword']  ?? null;
 $branch = $_POST['branch']  ?? null;
 $type = $_POST['type']  ?? null;
 $date_enrolled = $g_date_time;
-$type = $_POST['type']  ?? null;
+$selected="";
 
 //add
 if(isset($_POST['add'])){
@@ -71,6 +71,7 @@ if(isset($_POST['search'])){
             $db_branch = $row['branch'];
             $db_type = $row['type'];
             $db_date_enrolled = $row['date_enrolled'];
+
 		   
 
             }
@@ -141,17 +142,19 @@ if(isset($_POST['update'])){
 	<label for="branch">Branch:</label>
     <input type="text" name="branch" class="form-control"  value="<?php echo $db_branch ?? null; ?>">
 	<label for="type">Type:</label>
-    <input type="text" name="type" class="form-control"   value="<?php echo $db_type ?? null; ?>">
+    <!-- <input type="text" name="type" class="form-control"   value="<?php echo $db_type ?? null; ?>"> -->
+    <select name="type" class="form-control">
+<option value="0">Please Select Option</option>
+<option value="admin" <?php if($db_type=="admin") echo 'selected="selected"' ?? null; ?> >Admin</option>
+<option value="emp" <?php if($db_type=="emp") echo 'selected="selected"' ?? null; ?> >Employee</option>
+</select>
 	<label for="date_enrolled">Date/Time Enrolled:</label>
     <input type="text" name="date_enrolled" class="form-control"  value="<?php echo $db_date_enrolled ?? null; ?>" readonly>
 
 
 
-    <select name="type" id="type">
-  <option value=""></option>
-  <option value="admin">Admin</option>
-  <option value="user">User</option>
-</select>
+
+    
 
 
     <input type="submit" name="add" class="btn btn-success mb-2" value="Add">&nbsp;<input type="submit" name="update" class="btn btn-success mb-2" value="Edit/Update">&nbsp;<input type="submit" name="delete" class="btn btn-success mb-2" value="Delete" onclick="return deleteconfig()">

@@ -33,6 +33,7 @@ if(isset($_POST['login'])){
 
 		if(isset($check)){
 			session_start();
+			global $g_type;
 			$_SESSION['s_username'] = $username;
 			$_SESSION['s_password'] = $password;
             $_SESSION['s_branch'] = $check['branch'];
