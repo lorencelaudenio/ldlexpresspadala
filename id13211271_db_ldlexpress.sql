@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 05:31 PM
+-- Generation Time: Oct 25, 2023 at 05:04 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -142,12 +142,13 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_no`, `username`, `password`, `branch`, `type`, `date_enrolled`) VALUES
-(1, 'admin', '04072020Ldl', 'sigma', 'admin', '04/07/2020'),
-(2, 'lorence', '10151989Ldl', 'mindoro', 'admin', '04/07/2020'),
-(3, 'hello', 'hello', 'sigma', 'emp', '04/09/20 12:16:53'),
-(4, 'user', 'user', 'user', 'emp', '04/09/20 01:02:05'),
-(5, 'guest', 'guest', 'Manila', 'emp', '04/09/20 01:12:40'),
-(6, 'paul', '1234', 'Dian - Makati', 'emp', '2023-09-21 10:59:56');
+(1, 'admin', 'dfc05edcaffc898873222be3500db883', 'sigma', 'admin', '04/07/2020'),
+(2, 'lorence', '30ca0a06fa3e19eaed3b4b5a33b8c985', 'mindoro', 'admin', '04/07/2020'),
+(3, 'hello', '5d41402abc4b2a76b9719d911017c592', 'sigma', 'emp', '04/09/20 12:16:53'),
+(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'emp', '04/09/20 01:02:05'),
+(5, 'guest', '084e0343a0486ff05530df6c705c8bb4', 'Manila', 'emp', '04/09/20 01:12:40'),
+(6, 'paul', '81dc9bdb52d04dc20036dbd8313ed055', 'Dian - Makati', 'emp', '2023-09-21 10:59:56'),
+(7, 'soy', '81dc9bdb52d04dc20036dbd8313ed055', 'Dian - Makati', 'emp', '2023-10-25 04:55:32');
 
 --
 -- Indexes for dumped tables
@@ -209,7 +210,7 @@ ALTER TABLE `tbl_ldlpadalaexpress`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

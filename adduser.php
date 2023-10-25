@@ -13,6 +13,8 @@ $branch = $_POST['branch']  ?? null;
 $type = $_POST['type']  ?? null;
 $date_enrolled = $g_date_time;
 $selected="";
+$password = md5($password);
+$cpassword = md5($cpassword);
 
 //add
 if(isset($_POST['add'])){
@@ -100,6 +102,7 @@ if(isset($_POST['delete'])){
 
 //update
 if(isset($_POST['update'])){	
+
 		    $updatequery = mysqli_query($conn,"UPDATE tbl_users SET password='$password', branch='$branch', type='$type' WHERE username = '$username'");
 		   echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' record updated!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
