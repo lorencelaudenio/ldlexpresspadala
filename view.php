@@ -8,13 +8,13 @@ $count = 0;
 
 include("verify_login.php");
 
-
+$v_from_date = $_POST['from_date'] ?? null;
+  $v_to_date = $_POST['to_date'] ?? null;
+  $status = $_POST['status'] ?? null;
+  $usr = $_POST['usr'] ?? null;
 //conditions beg
 if(isset($_POST['filter'])){
-  $v_from_date = $_POST['from_date'];
-  $v_to_date = $_POST['to_date'];
-  $status = $_POST['status'];
-  $usr = $_POST['usr'] ?? null;
+  
   
   $sql = "";
 
@@ -87,9 +87,9 @@ echo '<div class="container p-3 bg-primary text-white">
 <div class="container p-3 my-3 border">
 <form class="form-inline" method="POST" action="view.php">
 <label for="from" class="mr-sm-2">From:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_from_date.'" name="from_date" id="from_date">
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_from_date .'" name="from_date" id="from_date">
 <label for="to" class="mr-sm-2">To:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_to_date.'" name="to_date" id="to_date">
+ <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_to_date .'" name="to_date" id="to_date">
  
 
 
