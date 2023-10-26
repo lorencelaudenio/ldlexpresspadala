@@ -142,7 +142,7 @@ echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="fil
       $db_processed_by = $row["processed_by"];
       $db_status = $row["status"];
   echo "<tr>
-  <td id='txn'>$db_txn_no <a tabindex='0' class='bi bi-clipboard' onclick='CopyMyLeftTd(this)' data-trigger='focus' data-toggle='popover'  data-content='Copied!' ></a></td>
+  <td id='txn'>$db_txn_no <a tabindex='0' class='bi bi-clipboard '   role='button' data-toggle='popover'   data-content='Copied!' onclick='CopyMyLeftTd(this)'></a></td>
   <td>$db_amt</td>
       <td>$db_sender</td>
   <td>$db_receiver</td>

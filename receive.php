@@ -4,7 +4,7 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 include("verify_login.php");
-
+include("scripts.php");
 
 $txn_no = "";
 
@@ -150,7 +150,7 @@ if(isset($_POST['receive'])){
     <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by  ?? null; ?>"  readonly>
     <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent  ?? null; ?>"  readonly>
   </div>
-  <input title="<?php echo $message; ?>" <?php echo $readonly;?> class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
+  <input data-toggle="tooltip" data-placement="right" title="<?php echo $message; ?>" <?php echo $readonly;?> class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
 </form>
 
 <form method="POST" action="claimreceipt.php">

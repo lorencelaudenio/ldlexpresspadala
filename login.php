@@ -49,41 +49,40 @@ include("headers.php");
 
 
 
-<link rel="stylesheet" type="text/css" href="style.css">
+
 <title>Login | <?php echo $comp_name;?></title>
 
 
 
-<!--<div class="container p-5 my-5 bg-primary text-white col-md-4 shadow">-->
-<div class="container shadow p-3 mb-5 bg-white rounded col-md-4">
-<center><img class="loginlogo rounded-circle" src="<?php echo $logo;?>" /></center>
-<b><center><small><font color="#e60000"><?php echo $comp_name;?> Login</font></small></center></b>
 
-<form method="POST" action="login.php">
-<div class="form-group">
-<label for="username">Username:</label>
-<input type="text" name="username" class="form-control" placeholder="Enter Username" required >
-</div>
-<!-- <div class="form-group">
-<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required><i class="bi bi-eye" onclick="ShowPass()"></i><br> -->
-<label for="password">Password:</label>
 
-<div class="input-group mb-3">
-  <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" aria-label="Enter password" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2"><i class="bi bi-eye" onclick="ShowPass()"></i></span>
+
+<div class="container h-100 shadow col-md-4 rounded">
+  <div class="row h-100 justify-content-center align-items-center">
+  
+    <form class="col-12" method="POST" action="login.php">
+        <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:75px;"/>
+        <small><font color="#e60000"><?php echo $comp_name;?> Login</font></small>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required>
+            <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" aria-label="Enter password" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2"><i class="bi bi-eye" onclick="ShowPass()"></i></span>
+            </div>
+        </div>
+        <input type="submit" name="login" value="Login" class="btn btn-primary">
+
+        <div class="small alert alert-danger mt-3" role="alert">
+            <b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
+        </div>
+    </form>   
+
+    
   </div>
-</div>
-
-<input type="submit" name="login" value="Login" class="btn btn-success">
-
-
-<div class="small alert alert-danger MT-3" role="alert">
-<b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
-</div>
-</form>
-</div>
-
 </div>
 
 

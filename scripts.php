@@ -82,12 +82,20 @@ function getdestcode(){
 <script>
   $(function () {
   $('[data-toggle="popover"]').popover()
+  
 })
 </script>
 
-<script>
+<!-- <script>
   $('.popover-dismiss').popover({
   trigger: 'focus'
+  
 })
-  </script>
+  </script> -->
+
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 
