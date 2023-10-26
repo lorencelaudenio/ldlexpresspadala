@@ -57,34 +57,35 @@ include("headers.php");
 
 
 <section class="vh-100 ">
-    <div class="container py-3  shadow col-md-4 rounded">
-    <div class="row d-flex  justify-content-center align-items-center">
-    
-        <form class="col-12" method="POST" action="login.php">
-            <div class="text-center">
-                <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:75px;"/><br>
-                <small><font color="#e60000"><?php echo $comp_name;?> Login</font></small>
+    <div class="container py-3 h-100  col-md-4 rounded">
+    <div class="row d-flex  justify-content-center align-items-center h-100">
+        <div class="card   shadow rounded" >
+            <div class="card-body p-5 text-center">
+                <form class="col-12" method="POST" action="login.php">
+                    <div class="text-center">
+                        <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:75px;"/><br>
+                        <small><?php echo $comp_name;?> Login</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required>
+                        <!-- <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small> -->
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" aria-label="Enter password" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2"><i class="bi bi-eye" onclick="ShowPass()"></i></span>
+                        </div>
+                    </div>
+                    
+                    <input type="submit" name="login" value="Login" class="btn btn-primary">
+
+                    <div class="small alert alert-danger mt-3 text-muted" role="alert">
+                        <b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
+                    </div>
+                </form>   
+            </div>
         </div>
-
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required>
-                <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
-            </div>
-            <div class="input-group mb-3">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" aria-label="Enter password" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-eye" onclick="ShowPass()"></i></span>
-                </div>
-            </div>
-            <input type="submit" name="login" value="Login" class="btn btn-primary">
-
-            <div class="small alert alert-danger mt-3" role="alert">
-                <b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
-            </div>
-        </form>   
-
-        
     </div>
     </div>
 </section>
