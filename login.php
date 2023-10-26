@@ -6,7 +6,7 @@ session_start();
 $username = $password = "";
 
 $username = $_POST['username']  ?? null;
-$password = md5($_POST['password'])  ?? null;
+$password = $_POST['password']  ?? null;
 
 
 include("conn.php");
