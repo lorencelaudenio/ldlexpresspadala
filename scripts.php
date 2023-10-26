@@ -79,3 +79,15 @@ function getdestcode(){
 }
 </script>
 
+<script>
+  $(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+
+<script>
+  $('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+  </script>
+
