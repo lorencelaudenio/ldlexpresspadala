@@ -56,15 +56,15 @@ include("headers.php");
 
 
 
-<section class="vh-100 ">
+<section class="vh-100 " style="background-color: hsl(0, 0%, 96%)">
     <div class="container py-3 h-100  col-md-4 rounded">
     <div class="row d-flex  justify-content-center align-items-center h-100">
-        <div class="card   shadow rounded" >
+        <div class="card   shadow " style="border-radius: 1rem;">
             <div class="card-body p-4 text-center">
                 <form class="col-12" method="POST" action="login.php">
                     <div class="text-center">
                         <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:85px;"/><br>
-                        <small><?php echo $comp_name;?> Login</small>
+                        <h4 class="mb-3"><?php echo $comp_name;?> Login</h4>
                     </div>
 
                     <div class="form-group mt-3">
@@ -78,7 +78,7 @@ include("headers.php");
                         </div>
                     </div>
                     
-                    <input type="submit" name="login" value="Login" class="btn btn-primary">
+                    <input type="submit" name="login" value="Login" class="btn btn-primary btn-lg btn-block">
 
                     <div class="small alert alert-danger mt-3 text-muted" role="alert">
                         <b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
