@@ -10,6 +10,7 @@ $txn_no = "";
 
 $txn_no=$_POST['txn_no'] ?? null;
 $readonly = "";
+$message = "";
 
 
 $status = "Claimed";
@@ -50,8 +51,10 @@ if(isset($_POST['search'])){
             
             if($db_status=="Claimed"){
               $readonly = "disabled";
+              $message = "Transaction is already claimed.";
             }elseif($db_status=="Unlaim"){
               $readonly = "";
+              $message = "";
             }
 
                   
@@ -147,7 +150,7 @@ if(isset($_POST['receive'])){
     <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by  ?? null; ?>"  readonly>
     <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent  ?? null; ?>"  readonly>
   </div>
-  <input <?php echo $readonly;?> class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
+  <input title="<?php echo $message; ?>" <?php echo $readonly;?> class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
 </form>
 
 <form method="POST" action="claimreceipt.php">
