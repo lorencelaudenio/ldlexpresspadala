@@ -64,9 +64,16 @@ include("headers.php");
 <label for="username">Username:</label>
 <input type="text" name="username" class="form-control" placeholder="Enter Username" required >
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
+<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required><i class="bi bi-eye" onclick="ShowPass()"></i><br> -->
 <label for="password">Password:</label>
-<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required><i class="bi bi-eye" onclick="ShowPass()"></i><br>
+
+<div class="input-group mb-3">
+  <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" aria-label="Enter password" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <span class="input-group-text" id="basic-addon2"><i class="bi bi-eye" onclick="ShowPass()"></i></span>
+  </div>
+</div>
 
 <input type="submit" name="login" value="Login" class="btn btn-success">
 
