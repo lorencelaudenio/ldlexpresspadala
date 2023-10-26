@@ -66,8 +66,8 @@ include("headers.php");
 </div>
 <div class="form-group">
 <label for="password">Password:</label>
-<input type="password" name="password" class="form-control" placeholder="Enter Password" required><br>
-<i class="fa fa-eye toggle icon"></i>
+<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required><i class="bi bi-eye" onclick="ShowPass()"></i><br>
+
 <input type="submit" name="login" value="Login" class="btn btn-success">
 
 
