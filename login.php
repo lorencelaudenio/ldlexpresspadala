@@ -60,10 +60,10 @@ include("headers.php");
     <div class="container py-3 h-100  col-md-4 rounded">
     <div class="row d-flex  justify-content-center align-items-center h-100">
         <div class="card   shadow rounded" >
-            <div class="card-body p-3 text-center">
+            <div class="card-body p-4 text-center">
                 <form class="col-12" method="POST" action="login.php">
                     <div class="text-center">
-                        <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:75px;"/><br>
+                        <img class="loginlogo rounded-circle img-fluid " src="<?php echo $logo;?>" style="width:85px;"/><br>
                         <small><?php echo $comp_name;?> Login</small>
                     </div>
 
