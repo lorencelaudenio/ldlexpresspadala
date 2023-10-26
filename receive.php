@@ -9,6 +9,7 @@ include("verify_login.php");
 $txn_no = "";
 
 $txn_no=$_POST['txn_no'] ?? null;
+$readonly = "";
 
 
 $status = "Claimed";
@@ -46,6 +47,12 @@ if(isset($_POST['search'])){
 		    $db_processed_by = $row['processed_by'];
             $db_date_time_sent = $row['date_time_sent'];
             $db_status = $row['status'];
+            
+            if($db_status=="Claimed"){
+              $readonly = "disabled";
+            }elseif($db_status=="Unlaim"){
+              $readonly = "";
+            }
 
                   
             
@@ -140,7 +147,7 @@ if(isset($_POST['receive'])){
     <input type="text" class="form-control" name="processed_by" value="<?php echo $db_processed_by  ?? null; ?>"  readonly>
     <input type="text" class="form-control" name="date_time_sent"  value="<?php echo $db_date_time_sent  ?? null; ?>"  readonly>
   </div>
-  <input class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
+  <input <?php echo $readonly;?> class="btn btn-success mb-2" type="submit" name="receive" value="Release" onclick="return confirm('I confirm the identity of the receiver.')">
 </form>
 
 <form method="POST" action="claimreceipt.php">
