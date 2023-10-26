@@ -76,7 +76,7 @@ if(isset($_POST['receive'])){
         $sql = mysqli_query($conn,"UPDATE tbl_ldlpadalaexpress SET status='$status', date_time_claimed='$g_date_time', released_by='$g_logged_info' WHERE txn_no='$txn_no'");
 
        //echo "Money claimed succesfully!";
-        echo '<center><div class="alert alert-success fade in alert-dismissible show"><a a href="claimreceipt.php" target="_BLANK" class="printlink"><b>' .$txn_no. '</b></a> claimed successfully!
+        echo '<center><div class="alert alert-success fade in alert-dismissible show"><a data-toggle="tooltip" data-placement="right" title="Click to print receipt!" href="claimreceipt.php" target="_BLANK" class="printlink"><b>' .$txn_no. '</b></a> claimed successfully!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true" style="font-size:20px">×</span>
   </button>
