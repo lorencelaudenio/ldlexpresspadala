@@ -99,7 +99,7 @@ function getdestcode(){
 })
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 $(document).ready(function () {
  
@@ -110,7 +110,7 @@ window.setTimeout(function() {
 }, 5000);
  
 });
-</script>
+</script> -->
 
 <script>
   $('.toast').toast(option)

@@ -39,7 +39,7 @@ if(isset($_POST['send'])){
     $txn_numbah = initials($string).date("mdyhis");
     $sql = mysqli_query($conn, "INSERT INTO tbl_ldlpadalaexpress(txn_no, status, amt, sender, sender_cp_no, dest, receiver, receiver_cp_no, relship, purp, date_time_sent, date_time_claimed, processed_by, released_by) VALUES('$txn_numbah', '$status', '$amt', '$sender', '$sender_cp_no', '$dest', '$receiver', '$receiver_cp_no', '$relship', '$purp', '$date_time_sent', '$date_time_claimed', '$g_logged_info', '$released_by')");
 
-    echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
+    // echo "Money has been sent. Please note the transaction code is <b>" . $supernew_txn_code . ".</b>" ;
     echo '<center><div class="alert alert-info fade in alert-dismissible show">Money has been sent. Please note the transaction code is <b><a href="print.php" target="_BLANK" class="printlink">' . $txn_numbah . '</a></b>!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true" style="font-size:20px">×</span>
