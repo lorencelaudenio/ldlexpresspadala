@@ -5,6 +5,7 @@ include("nav.php");
 include("global_variables.php");
 echo '<div class="container p-3 bg-primary text-white">';
 include("verify_if_admin.php");
+include("scripts.php");
 
 $username = $_POST['username'] ?? null;
 $password = $_POST['password']  ?? null;
@@ -102,7 +103,7 @@ if(isset($_POST['delete'])){
 
 //update
 if(isset($_POST['update'])){	
-
+$password = md5($password);
 		    $updatequery = mysqli_query($conn,"UPDATE tbl_users SET password='$password', branch='$branch', type='$type' WHERE username = '$username'");
 		   echo '<center><div class="alert alert-info fade in alert-dismissible show">' . $username. ' record updated!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -134,7 +135,7 @@ if(isset($_POST['update'])){
     <div class="input-group-prepend">
       <span class="input-group-text">Password:</span>
     </div>
-    <input type="password" name="password" class="form-control"  value="<?php echo md5($db_password) ?? null; ?>">
+    <input id="password" type="password" name="password" class="form-control"  value="<?php echo md5($db_password) ?? null; ?>"><i class="bi bi-eye" onclick="ShowPass()"></i>
 	<div class="input-group-prepend">
       <span class="input-group-text">Confirm:</span>
     </div>

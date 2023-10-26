@@ -69,6 +69,11 @@ include("headers.php");
 <input type="password" name="password" class="form-control" placeholder="Enter Password" required><br>
 <i class="fa fa-eye toggle icon"></i>
 <input type="submit" name="login" value="Login" class="btn btn-success">
+
+
+<div class="small alert alert-danger MT-3" role="alert">
+<b>DISCLAIMER:</b> Unauthorized access to this website is strictly prohibited and may be subject to legal action.
+</div>
 </form>
 </div>
 
