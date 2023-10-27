@@ -52,5 +52,7 @@ while($row = mysqli_fetch_assoc($query ?? null)) {
     </table>
 </div>
 
+<?php include('footer.php');?>
+
 
 
