@@ -3,7 +3,8 @@ error_reporting (E_ALL ^ E_NOTICE); //para no undefined error
 include("conn.php");
 include("nav.php");
 include("global_variables.php");
-
+include("scripts.php");
+include("functions.php");
 
 
 
@@ -25,7 +26,6 @@ echo "
 ";
 $query = mysqli_query($conn, $sql_select ="SELECT * FROM tbl_ldlpadalaexpress");
 while($row = mysqli_fetch_assoc($query ?? null)) {
-    include("scripts.php");
     $db_txn_no = $row["txn_no"];
     $db_amt = $row["amt"];
     $db_sender = $row["sender"];
