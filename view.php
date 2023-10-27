@@ -4,171 +4,53 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 
-$count = 0;
-
-include("verify_login.php");
-
-$v_from_date = $_POST['from_date'] ?? null;
-  $v_to_date = $_POST['to_date'] ?? null;
-  $status = $_POST['status'] ?? null;
-  $usr = $_POST['usr'] ?? null;
-//conditions beg
-if(isset($_POST['filter'])){
-  
-  
-  $sql = "";
-
-$sql_select ="SELECT * FROM tbl_ldlpadalaexpress";
-
-if(!empty($v_from_date)){
-    if(!empty($sql)){
-          $sql .= " AND ";
-       }
-
-   $sql.=" LEFT(date_time_sent,10)>='$v_from_date' ";
-}
-
-if(!empty($v_to_date)){
-    if(!empty($sql)){
-          $sql .= " AND ";
-       }
-
-   $sql.=" LEFT(date_time_sent,10)<='$v_to_date' ";
-}
-
-if(!empty($status)){
-    if(!empty($sql)){
-          $sql .= " AND ";
-       }
-
-   $sql.=" status='$status' ";
-}
-
-if(!empty($usr)){
-    if(!empty($sql)){
-          $sql .= " AND ";
-       }
-
-   $sql.=" processed_by='$usr' ";
-}
-
-if($g_type == "emp"){
-  if(!empty($sql)){
-        $sql .= " AND ";
-     }
-
-    $sql.=" processed_by = '$g_logged_info' ";
-}
-
-if(!empty($sql)){
-      $sql = " WHERE ".$sql;
-
-      $ewan = $sql_select.$sql.' ORDER BY date_time_sent DESC';//dapat wala ng " sa unahan at huli
 
 
 
-      $ito_dapat = mysqli_query($conn,$ewan);
-      $count = mysqli_num_rows($ito_dapat);
-
-
- }
-
- 
-}
-
-
-echo '<div class="container p-3 bg-primary text-white">
-
-
-
-			
-			
-<h2>View <span class="badge badge-secondary">'.$count.'</span></h2>
-<div class="container p-3 my-3 border">
-<form class="form-inline" method="POST" action="view.php">
-<label for="from" class="mr-sm-2">From:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_from_date .'" name="from_date" id="from_date">
-<label for="to" class="mr-sm-2">To:</label>
- <input type="date" id="from_date" class="form-control mb-2 mr-sm-2"  value="'.$v_to_date .'" name="to_date" id="to_date">
- 
-
-
-<label for="status" class="mr-sm-2">Status:</label>
-<select name="status" id="statusa" value="'.$status.'" class="form-control mb-2 mr-sm-2">
-    <option name="status" value=""></option>
-    <option name="status" value="Claimed">Claimed</option>
-    <option name="status" value="Unclaim">Unclaim</option>
-</select>&nbsp;' ?? null;
-
-if($g_type == "admin"){echo "User:&nbsp;<select class='form-control mb-2 mr-sm-2' name='usr' value='".$usr."' class='inputtextsearch'><option></option>";}
-
-$populate_users = mysqli_query($conn,"SELECT * from tbl_users WHERE username<>'admin'");
-while ($row = mysqli_fetch_array($populate_users)) {
-  if($g_type == "admin"){
-    echo "<option value='" . $row['username'] ." - ".$row['branch'] . "'>" . $row['username'] ." - ".$row['branch'] . "</option>";
-  }
-    }
-echo "</select>&nbsp;";
-
-
-echo '<input type="submit" class="btn btn-success mb-2" value="Filter" name="filter" >
-</form>
-</div>
-';
-
-	echo "<table class='table table-dark table-hover' border='1' width='100%'
-        <tr class='thead-dark'>
-		<td align='center'><b>Txn No</b></td>
-		<td align='center'><b>Amount</b></td>
-		<td align='center'><b>Sender</b></td>
-        <td align='center'><b>Receiver</b></td>
-        <td align='center'><b>Date</b></td>
-        <td align='center'><b>Processed by</b></td>
-        <td align='center'><b>Status</b></td>
-		</tr>";
-
-	//while($row = mysqli_fetch_assoc($view_query)) {
-  if($ito_dapat ?? null){//important ito to fix mysqli_fetch_assoc() expects parameter 1 to be
-  while($row = mysqli_fetch_assoc($ito_dapat ?? null)) {
-
-    include("functions.php");
-    include("scripts.php");
-
-  $db_txn_no = $row["txn_no"];
-  $db_amt = $row["amt"];
-      $db_sender = $row["sender"];
-  $db_receiver = $row["receiver"];
-      $db_date_time_sent = $row["date_time_sent"];
-      $db_processed_by = $row["processed_by"];
-      $db_status = $row["status"];
-  echo "<tr>
-  <td id='txn'>$db_txn_no <a tabindex='0' class='bi bi-clipboard '   role='button' data-toggle='popover'   data-content='Copied!' onclick='CopyMyLeftTd(this)'></a></td>
-  <td>$db_amt</td>
-      <td>$db_sender</td>
-  <td>$db_receiver</td>
-      <td>$db_date_time_sent</td>
-      <td>$db_processed_by</td>
-      <td>$db_status</td>
-  </tr>";
-
-
-  }
-  }
-  //====
-
-
-
-
-	echo "</table><br>
-
-</div> 
-</div> 
-
+echo "
+<div class='container p-3 border border-primary'>
+    <table id='myTable' class='display'>
+    <thead>
+        <tr>
+            <th>Txn No</th>
+            <th>Amount</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Date</th>
+            <th>Processed by</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
 ";
+$query = mysqli_query($conn, $sql_select ="SELECT * FROM tbl_ldlpadalaexpress");
+while($row = mysqli_fetch_assoc($query ?? null)) {
+    include("scripts.php");
+    $db_txn_no = $row["txn_no"];
+    $db_amt = $row["amt"];
+    $db_sender = $row["sender"];
+    $db_receiver = $row["receiver"];
+    $db_date_time_sent = $row["date_time_sent"];
+    $db_processed_by = $row["processed_by"];
+    $db_status = $row["status"];
+
+    echo "
+        <tr>
+            <td>$db_txn_no <a tabindex='0' class='bi bi-clipboard '   role='button' data-toggle='popover'   data-content='Copied!' onclick='CopyMyLeftTd(this)'></a></td>
+            <td>$db_amt</td>
+            <td>$db_sender</td>
+            <td>$db_receiver</td>
+            <td>$db_date_time_sent</td>
+            <td>$db_processed_by</td>
+            <td>$db_status</td>
+        </tr>
+    ";
+}
 ?>
 
+    </tbody>
+    </table>
+</div>
 
 
-<title>View | <?php echo $comp_name; ?></title>
 
-<?php include ('footer.php');?>

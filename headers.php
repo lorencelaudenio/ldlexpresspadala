@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="shortcut icon" href="<?php echo $logo;?>" type="image/x-icon">
     <link rel="icon" href="<?php echo $logo;?>" type="image/x-icon">
+
+    <!-- Table Beg-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <!-- Table End -->
 </head>
 
 

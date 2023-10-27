@@ -116,3 +116,11 @@ window.setTimeout(function() {
   $('.toast').toast(option)
 </script>
 
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+    paging: true
+    scrollY: 400
+} );
+</script>
+
