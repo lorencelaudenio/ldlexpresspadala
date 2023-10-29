@@ -127,7 +127,8 @@ $(document).ready( function () {
         'info': true,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+
     }
     );
     paging: true
@@ -175,5 +176,6 @@ $(document).ready( function () {
      el.addEventListener('change', () => table.draw());
  });
 </script>
+
 
 
