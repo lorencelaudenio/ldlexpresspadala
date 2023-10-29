@@ -136,9 +136,6 @@ $(document).ready( function () {
     $('select').on('change', function() {
       table.column(6).search(this.value).draw()
     })
-
-
-    
 } );
 </script>
 
