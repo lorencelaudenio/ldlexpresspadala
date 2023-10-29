@@ -10,6 +10,16 @@ include("functions.php");
 
 echo "
 <div class='container p-3 border border-primary'>
+
+
+<p align='right'>
+  <label>Filter :</label>
+  <select style='color:black;width:235px;' class='w3-input' name='report_type' required='required'>
+    <option value='' selected>All</option>
+    <option value='Claimed'>Claimed</option>
+    <option value='Unclaim'>Unclaim</option>
+  </select>
+</p>
     <table id='myTable' class='display'>
     <thead>
         <tr>
