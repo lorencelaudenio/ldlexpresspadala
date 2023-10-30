@@ -93,7 +93,7 @@ if(isset($_POST['receive'])){
 
 <form method="POST" action="receive.php" >
 <div class="input-group mb-3">
-<input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
+<input placeholder="<?php $code = initials($string); echo $code.'XXXXXXXXXXXX';?>" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
 <div class="input-group-append">
 <input class="btn btn-success mb-2" type="submit" name="search" value="Search">
 <input type="hidden"   name="status" value="<?php echo $db_status; ?>" >

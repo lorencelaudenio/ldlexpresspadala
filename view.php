@@ -10,8 +10,6 @@ include("functions.php");
 
 echo "
 <div class='container p-3 border border-primary'>
-
-
 <p align='right'>
   <label>Filter :</label>
   <select style='color:black;width:235px;' class='w3-input' name='report_type' required='required'>

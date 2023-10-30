@@ -5,6 +5,7 @@ include("nav.php");
 include("global_variables.php");
 include("headers.php");
 include("verify_login.php");
+include("scripts.php");
 
 
 
@@ -56,7 +57,7 @@ if(isset($_POST['search'])){
 <h2>Track</h2>
 <form method="POST" action="index.php" class="was-validated">
 <div class="input-group mb-3">
-<input placeholder="Enter Transaction Number" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
+<input placeholder="<?php $code = initials($string); echo $code.'XXXXXXXXXXXX';?>" class="form-control" type="text" name="txn_no" value="<?php echo $db_txn_no ?? null; ?>" autofocus required>
 <div class="input-group-append">
 <input class="btn btn-success mb-2" type="submit" name="search" value="Search">
 </div>

@@ -29,6 +29,7 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			global $g_fb;
 			global $g_mission;
 			global $g_vision;
+			global $g_timezone;
 		    $logo = $row['logo'] ?? null;
 		    $comp_name = $row['compName'] ?? null;
             $comp_add = $row['compAdd'] ?? null;
@@ -42,7 +43,8 @@ $searchquery = mysqli_query($conn,"SELECT * FROM config");
 			$g_fb = $row['fb'] ?? null;
 			$g_mission = $row['mission'] ?? null;
 			$g_vision = $row['vision'] ?? null;
-
+			date_default_timezone_set("Asia/Manila");
+			$timezone = date_default_timezone_set("Asia/Manila");
             }
 		}
 //load config end

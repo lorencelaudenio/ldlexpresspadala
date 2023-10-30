@@ -13,6 +13,20 @@ return del;
 </script>
 
 <script>
+    /*delete record*/
+function deleterec(){
+
+var del=confirm("Are you sure you want to delete the transaction?");
+if (del==true){
+   alert ("Transaction deleted!")
+}else{
+    alert("No transaction were affected.")
+}
+return del;
+}
+</script>
+
+<script>
     /*delete config*/
 function deleteallrecords(){
 
@@ -125,6 +139,7 @@ $(document).ready( function () {
         'sDom': 'lrtip',
         'lengthChange': false,
         'info': true,
+        order: [[4, 'desc']],
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
@@ -140,42 +155,19 @@ $(document).ready( function () {
 } );
 </script>
 
-<script>
-  let minDate, maxDate;
- 
- // Custom filtering function which will search data in column four between two values
- DataTable.ext.search.push(function (settings, data, dataIndex) {
-     let min = minDate.val();
-     let max = maxDate.val();
-     let date = new Date(data[4]);
-  
-     if (
-         (min === null && max === null) ||
-         (min === null && date <= max) ||
-         (min <= date && max === null) ||
-         (min <= date && date <= max)
-     ) {
-         return true;
-     }
-     return false;
- });
-  
- // Create date inputs
- minDate = new DateTime('#min', {
-     format: 'MMMM Do YYYY'
- });
- maxDate = new DateTime('#max', {
-     format: 'MMMM Do YYYY'
- });
-  
- // DataTables initialisation
- let table = new DataTable('#myTable');
-  
- // Refilter the table
- document.querySelectorAll('#min, #max').forEach((el) => {
-     el.addEventListener('change', () => table.draw());
- });
-</script>
+<?php
+$string = $comp_name;
+
+function initials($str) {
+    $ret = '';
+    foreach (explode(' ', $str) as $word)
+        $ret .= strtoupper($word[0]);
+    return $ret;
+}
+?>
+
+
+
 
 
 

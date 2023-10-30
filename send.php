@@ -4,23 +4,19 @@ include("conn.php");
 include("nav.php");
 include("global_variables.php");
 include("verify_login.php");
+include("scripts.php");
 
-$string = $comp_name;
 
-function initials($str) {
-    $ret = '';
-    foreach (explode(' ', $str) as $word)
-        $ret .= strtoupper($word[0]);
-    return $ret;
-}
 
 
 $txn_no = $status = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $processed_by = $released_by = "";
 
+$clearall = $dest_code = $amt = $sender = $sender_cp_no = $dest = $receiver = $receiver_cp_no = $relship = $purp = $date_time_sent = $date_time_claimed = $released_by = "";
+
 $origin_code = strtoupper(substr($g_branch,0,3));
 $dest_code = $_POST['destcode'] ?? null;
-$new_txn_code = $origin_code . "-" . date("mdyhis") . "-" . $dest_code;
-$txn_no=$new_txn_code;
+// $new_txn_code = $origin_code . "-" . date("mdyhis") . "-" . $dest_code;
+// $txn_no=$new_txn_code;
 $status="Unclaim";
 $amt=$_POST['amt'] ?? null;
 $sender=$_POST['sender'] ?? null;
@@ -34,6 +30,8 @@ $date_time_sent=$g_date_time;
 $date_time_claimed="";
 $processed_by=$g_logged_info;
 $released_by=$_POST['released_by'] ?? null;
+
+
 echo '<div class="container p-3 bg-primary text-white">';
 if(isset($_POST['send'])){
     $txn_numbah = initials($string).date("mdyhis");
@@ -45,6 +43,7 @@ if(isset($_POST['send'])){
     <span aria-hidden="true" style="font-size:20px">×</span>
   </button>
 	  </div></center>';
+    $clearall;
 
 
     $_SESSION['s_txn_no'] = $txn_numbah;
@@ -54,7 +53,7 @@ if(isset($_POST['send'])){
 ?>
 
 <?php
-include("scripts.php");
+// include("scripts.php");
 
 
 

@@ -23,4 +23,6 @@ $g_type = $_SESSION['s_type']  ?? null;
 $g_date_time = date("Y-m-d h:i:s");
 $g_logged_info = $g_username . " - " . $g_branch;
 $g_today = date("Y-m-d");
+
+
 ?>

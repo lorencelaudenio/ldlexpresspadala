@@ -56,7 +56,7 @@ if(isset($_POST['delete'])){
 	<div class="input-group mb-3">
     <input type="text" name="txn_no" class="form-control" value="<?php echo $_POST['txn_no'] ?? null; ?>" required>
 	<div class="input-group-prepend">
-      <input type="submit" name="delete" class="btn btn-danger my-2 my-sm-0" value="Delete">
+      <input type="submit" name="delete" class="btn btn-danger my-2 my-sm-0" value="Delete" onclick="return deleterec()">
     </div>
 	</form>
   </div>

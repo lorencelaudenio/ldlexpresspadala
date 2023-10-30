@@ -113,7 +113,7 @@ $password = md5($password);
 
 }
 
- include('scripts.php');?>
+//  include('scripts.php');?>
 
 <title>User Management | <?php echo $comp_name; ?></title>
 
