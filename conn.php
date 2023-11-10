@@ -1,7 +1,7 @@
 <?php
 // Create connection
 //$conn = new mysqli("localhost","root","","db_ldlpadalaexpress");
-$conn = new mysqli("localhost","root","","id13211271_db_ldlexpress");
+$conn = new mysqli("localhost","root","","if0_34821151_db");
 // $conn = new mysqli("sql104.infinityfree.com","if0_34821151","xZRvdH06Ds","if0_34821151_db");
 // Check connection
 if ($conn->connect_error) {
